@@ -1,0 +1,180 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Commands
+
+```bash
+# Development
+npm run dev          # Start dev server at http://localhost:3000
+npm run build        # Build production bundle
+npm run start        # Start production server
+
+# Code Quality
+npm run lint         # Run ESLint
+npm run typecheck    # Run TypeScript type checking
+npm run format       # Format all files with Prettier
+npm run format:check # Check if files are formatted correctly
+```
+
+## Architecture
+
+This project follows **Feature-Sliced Design (FSD)** methodology with strict architectural conventions, integrated with Next.js App Router according to [official FSD guidelines](https://feature-sliced.github.io/documentation/docs/guides/tech/with-nextjs).
+
+### Layer Structure
+
+The codebase is organized into layers with unidirectional dependencies:
+
+```
+app → pages → widgets → features → entities → shared
+```
+
+### Directory Structure
+
+```
+├── app/                 # Next.js App Router (root level)
+├── pages/              # Empty folder (prevents Next.js from scanning src/pages/)
+└── src/
+    ├── pages/          # FSD pages layer - page compositions
+    ├── widgets/        # Large UI blocks
+    ├── features/       # User actions/scenarios
+    ├── entities/       # Domain entities with state/logic
+    └── shared/         # Reusable components, utilities, base types
+```
+
+**How it works:**
+
+- **`app/`** (root) - Next.js App Router for routing
+- **`src/pages/`** - FSD pages layer (re-exported in `app/`)
+- **`pages/`** (root, empty) - Prevents Next.js Pages Router from scanning `src/pages/`
+
+The App Router imports FSD pages from `src/`:
+
+```typescript
+// app/page.tsx
+import { BookingPage } from '@/pages/booking';
+export default () => <BookingPage />;
+```
+
+### Slice Structure
+
+Each slice follows a standard internal structure:
+
+- **ui/** - React components (CSS Modules co-located)
+- **model/** - State/store, selectors, derived state
+- **lib/** - Pure functions/utilities belonging to the slice
+- **api/** - Requests/adapters (if needed)
+- **index.ts** - Single export point (Public API)
+
+### Naming Conventions
+
+- **kebab-case** for everything: folders, files, components in ui/ (e.g., `booking-panel`, `select-time`, `confirm-booking`)
+- One slice = one responsibility / one business idea
+- All public imports must go through `index.ts`
+
+### Import Rules
+
+**Correct:**
+
+```typescript
+import { BookingPanel } from '@/widgets/booking-panel';
+```
+
+**Incorrect:**
+
+```typescript
+import { BookingPanel } from '@/widgets/booking-panel/ui/booking-panel';
+```
+
+### Component Structure
+
+Components in `ui/` should follow this structure:
+
+1. Props interface
+2. Props destructuring
+3. Hooks (at the top)
+4. Helper functions
+5. Effects (if needed)
+6. Return with layout
+
+Use CSS Modules (`*.module.css`) co-located with components.
+
+### Domain Logic Placement
+
+- **Pure date/time logic** (generating ranges, 15-min intervals, time rounding) → `entities/*/lib` or `shared/lib` (depending on generality)
+- **Selection state** (selected date/time, isConfirmEnabled) → `entities/*/model`
+
+## Technology Stack
+
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **Zustand** - State management (lightweight, minimal boilerplate)
+- **date-fns** - Date/time utilities (modular, tree-shakable, TypeScript-friendly)
+- **CSS Modules** - Component styling (scoped, co-located with components)
+- **ESLint (Airbnb config)** - Code quality
+- **Prettier** - Code formatting (single quotes, semicolons, trailing commas)
+
+## Project-Specific Notes
+
+### State Management
+
+The booking state is managed in `src/entities/booking/model/booking-store.ts` using Zustand. The store manages:
+
+- Selected date/time
+- Available time slots (derived from selected date)
+- Confirm button state (derived from date + time selection)
+
+### Date/Time Handling
+
+- All date logic in `src/entities/booking/lib/date-utils.ts`
+- Time slot generation in `src/entities/booking/lib/time-utils.ts`
+- Always use local timezone for user selections
+- Past times are automatically disabled for current day
+- Time stored as "minutes from midnight" for easier calculations
+
+### Component Pattern
+
+All React components follow this structure:
+
+1. Props interface definition (always named `Props`, not component-specific like `ButtonProps`)
+2. Props destructuring
+3. Hooks (useState, useMemo, useCallback, custom hooks)
+4. Helper functions
+5. useEffect (if needed)
+6. Return JSX
+
+**Example:**
+
+```typescript
+interface Props {
+  title: string;
+  onClick?: () => void;
+}
+
+export const MyComponent: React.FC<Props> = ({ title, onClick }) => {
+  // hooks
+  const [state, setState] = useState();
+
+  // helper functions
+  const handleClick = () => {};
+
+  // return JSX
+  return <div>{title}</div>;
+};
+```
+
+### Responsive Design
+
+- Mobile-first approach
+- Breakpoints: 640px (sm), 1024px (lg)
+- CSS custom properties in `src/app/globals.css` for theming
+- Grid layouts adapt from mobile to desktop
+
+### Import Paths
+
+All imports use the `@/` alias which maps to `src/`:
+
+```typescript
+import { BookingPanel } from '@/widgets/booking-panel';
+import { useBookingStore } from '@/entities/booking';
+```

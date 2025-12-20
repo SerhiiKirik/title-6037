@@ -1,0 +1,226 @@
+.container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-lg);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.successCard {
+  max-width: 500px;
+  width: 100%;
+  background-color: var(--color-background);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xl);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.iconWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background-color: #10b981;
+  border-radius: 50%;
+  margin-bottom: var(--spacing-lg);
+  animation: scaleIn 0.5s ease-out 0.2s both;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.checkIcon {
+  width: 48px;
+  height: 48px;
+  color: white;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 640px) {
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+.bookingDetails {
+  background-color: var(--color-selected);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  animation: fadeIn 0.5s ease-out 0.3s both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+}
+
+.detailRow:not(:last-child) {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.detailLabel {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detailValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+@media (min-width: 640px) {
+  .detailValue {
+    font-size: 1.125rem;
+  }
+}
+
+.detailsTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.noDetails {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+.emailSection {
+  margin-bottom: var(--spacing-xl);
+  animation: fadeIn 0.5s ease-out 0.4s both;
+}
+
+.emailPrompt {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-md);
+}
+
+.emailForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.emailInput {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  outline: none;
+  transition: all var(--transition);
+  font-family: inherit;
+}
+
+.emailInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.emailInput:disabled {
+  background-color: #f9fafb;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.emailInput::placeholder {
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+}
+
+.emailSuccess {
+  padding: var(--spacing-lg);
+  background-color: #d1fae5;
+  border: 2px solid #10b981;
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-xl);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.emailSuccessText {
+  font-size: 0.875rem;
+  color: #065f46;
+  font-weight: 600;
+  margin: 0;
+}
+
+.emailSuccessText strong {
+  color: #047857;
+}
+
+.backButton {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background-color: var(--color-primary);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.backButton:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+}
+
+.backButton:active {
+  transform: translateY(0);
+}
