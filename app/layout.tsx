@@ -14,7 +14,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
     <body>
       <Header title="Booking Session" />
-      {children}
+      <main>{children}</main>
     </body>
   </html>
 );

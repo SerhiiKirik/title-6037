@@ -55,80 +55,78 @@ export const SuccessPage: FC<Props> = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.successCard}>
-        <div className={styles.iconWrapper}>
-          <svg
-            className={styles.checkIcon}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-
-        <h1 className={styles.title}>Booking Confirmed!</h1>
-        <p className={styles.subtitle}>
-          Your session has been successfully booked
-        </p>
-
-        {bookingInfo ? (
-          <div className={styles.bookingDetails}>
-            <p className={styles.detailsTitle}>Your Booking Details:</p>
-            <div className={styles.detailRow}>
-              <span className={styles.detailLabel}>Date:</span>
-              <span className={styles.detailValue}>{bookingInfo.date}</span>
-            </div>
-            <div className={styles.detailRow}>
-              <span className={styles.detailLabel}>Time:</span>
-              <span className={styles.detailValue}>{bookingInfo.time}</span>
-            </div>
-          </div>
-        ) : (
-          <div className={styles.bookingDetails}>
-            <p className={styles.noDetails}>Loading booking details...</p>
-          </div>
-        )}
-
-        {!emailSent ? (
-          <div className={styles.emailSection}>
-            <p className={styles.emailPrompt}>
-              Enter your email to receive a confirmation
-            </p>
-            <form onSubmit={handleSendEmail} className={styles.emailForm}>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="your.email@example.com"
-                className={styles.emailInput}
-                required
-                disabled={isSending}
-              />
-              <Button type="submit" disabled={isSending || !email} fullWidth>
-                {isSending ? 'Sending...' : 'Send Confirmation'}
-              </Button>
-            </form>
-          </div>
-        ) : (
-          <div className={styles.emailSuccess}>
-            <p className={styles.emailSuccessText}>
-              ✓ Confirmation email sent to <strong>{email}</strong>
-            </p>
-          </div>
-        )}
-
-        <a href="/" className={styles.backButton}>
-          Back to Home
-        </a>
+    <div className={styles.successCard}>
+      <div className={styles.iconWrapper}>
+        <svg
+          className={styles.checkIcon}
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M5 13l4 4L19 7"
+          />
+        </svg>
       </div>
+
+      <h1 className={styles.title}>Booking Confirmed!</h1>
+      <p className={styles.subtitle}>
+        Your session has been successfully booked
+      </p>
+
+      {bookingInfo ? (
+        <div className={styles.bookingDetails}>
+          <p className={styles.detailsTitle}>Your Booking Details:</p>
+          <div className={styles.detailRow}>
+            <span className={styles.detailLabel}>Date:</span>
+            <span className={styles.detailValue}>{bookingInfo.date}</span>
+          </div>
+          <div className={styles.detailRow}>
+            <span className={styles.detailLabel}>Time:</span>
+            <span className={styles.detailValue}>{bookingInfo.time}</span>
+          </div>
+        </div>
+      ) : (
+        <div className={styles.bookingDetails}>
+          <p className={styles.noDetails}>Loading booking details...</p>
+        </div>
+      )}
+
+      {!emailSent ? (
+        <div className={styles.emailSection}>
+          <p className={styles.emailPrompt}>
+            Enter your email to receive a confirmation
+          </p>
+          <form onSubmit={handleSendEmail} className={styles.emailForm}>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your.email@example.com"
+              className={styles.emailInput}
+              required
+              disabled={isSending}
+            />
+            <Button type="submit" disabled={isSending || !email} fullWidth>
+              {isSending ? 'Sending...' : 'Send Confirmation'}
+            </Button>
+          </form>
+        </div>
+      ) : (
+        <div className={styles.emailSuccess}>
+          <p className={styles.emailSuccessText}>
+            ✓ Confirmation email sent to <strong>{email}</strong>
+          </p>
+        </div>
+      )}
+
+      <a href="/" className={styles.backButton}>
+        Back to Home
+      </a>
     </div>
   );
 };
