@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import cn from 'clsx';
 import type { TimeSlot } from '@/shared/types';
 import { Slider } from '@/shared/ui';
 import styles from './time-slider.module.css';
@@ -40,9 +41,10 @@ export const TimeSlider: React.FC<Props> = ({
           type="button"
           onClick={() => onTimeSelect(slot.value)}
           disabled={slot.disabled}
-          className={`${styles.timeSlot} ${
-            selectedTime === slot.value ? styles.selected : ''
-          } ${slot.disabled ? styles.disabled : ''}`}
+          className={cn(styles.timeSlot, {
+            [styles.selected]: selectedTime === slot.value,
+            [styles.disabled]: slot.disabled,
+          })}
           aria-label={`Select time ${slot.label}`}
           aria-pressed={selectedTime === slot.value}
         >

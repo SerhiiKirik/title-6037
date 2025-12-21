@@ -1,4 +1,5 @@
 import React from 'react';
+import cn from 'clsx';
 import styles from './button.module.css';
 
 interface Props {
@@ -17,21 +18,15 @@ export const Button: React.FC<Props> = ({
   variant = 'primary',
   fullWidth = false,
   type = 'button',
-}) => {
-  const classNames = [
-    styles.button,
-    styles[variant],
-    fullWidth ? styles.fullWidth : '',
-  ].join(' ');
-
-  return (
-    <button
-      type={type}
-      className={classNames}
-      onClick={onClick}
-      disabled={disabled}
-    >
-      {children}
-    </button>
-  );
-};
+}) => (
+  <button
+    type={type}
+    className={cn(styles.button, styles[variant], {
+      [styles.fullWidth]: fullWidth,
+    })}
+    onClick={onClick}
+    disabled={disabled}
+  >
+    {children}
+  </button>
+);

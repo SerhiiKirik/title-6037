@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import cn from 'clsx';
 import type { DateInfo } from '@/shared/types';
 import { Slider } from '@/shared/ui';
 import styles from './date-slider.module.css';
@@ -35,9 +36,10 @@ export const DateSlider: React.FC<Props> = ({ dates, onDateSelect }) => {
                 key={dateInfo.date.toISOString()}
                 type="button"
                 onClick={() => onDateSelect(dateInfo.date)}
-                className={`${styles.dateCard} ${
-                  dateInfo.isSelected ? styles.selected : ''
-                } ${dateInfo.isToday ? styles.today : ''}`}
+                className={cn(styles.dateCard, {
+                  [styles.selected]: dateInfo.isSelected,
+                  [styles.today]: dateInfo.isToday,
+                })}
                 aria-label={`Select ${dateInfo.dayOfWeek}, ${dateInfo.month} ${dateInfo.dayOfMonth}`}
                 aria-pressed={dateInfo.isSelected}
               >
