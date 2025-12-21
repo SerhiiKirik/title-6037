@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import { SuccessPage } from '@/pages/success';
+import { Loader } from '@/shared/ui';
 import {
   generateMetadata as generateSeoMetadata,
   SEO_DEFAULTS,
@@ -17,7 +18,7 @@ export const metadata = generateSeoMetadata(
 );
 
 const SuccessPageWrapper = () => (
-  <Suspense fallback={<div>Loading...</div>}>
+  <Suspense fallback={<Loader />}>
     <SuccessPage />
   </Suspense>
 );
