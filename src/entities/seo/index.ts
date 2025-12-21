@@ -26,6 +26,7 @@ export type {
   JsonLdConfig,
   SeoDefaults,
   Icons,
+  OpenGraphConfig,
 } from './types';
 
 // Export configuration

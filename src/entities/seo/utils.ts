@@ -5,7 +5,12 @@
  */
 
 import type { Metadata } from 'next';
-import type { PageSeoData, JsonLdOrganization, Breadcrumb } from './types';
+import type {
+  PageSeoData,
+  JsonLdOrganization,
+  Breadcrumb,
+  OpenGraphConfig,
+} from './types';
 
 /**
  * Generate canonical URL from breadcrumbs
@@ -151,6 +156,7 @@ export function generateMetadata(
       apple?: string;
     };
     manifest?: string;
+    openGraph?: Partial<OpenGraphConfig>;
   },
 ): Metadata {
   const canonicalUrl = generateCanonicalUrl(
@@ -162,6 +168,29 @@ export function generateMetadata(
   // Use icons from data if provided, otherwise use defaults
   const icons = data.icons || defaults.icons;
   const manifest = data.manifest || defaults.manifest;
+
+  // Merge OpenGraph config: defaults -> page-specific -> fallbacks
+  const ogConfig: OpenGraphConfig = {
+    ...defaults.openGraph,
+    ...data.openGraph,
+  };
+
+  // Build OpenGraph images
+  let ogImages;
+  if (ogConfig.images) {
+    ogImages = ogConfig.images;
+  } else if (data.metaImage) {
+    ogImages = [
+      {
+        url: data.metaImage.url,
+        width: data.metaImage.width,
+        height: data.metaImage.height,
+        alt: data.metaImage.alt,
+      },
+    ];
+  } else {
+    ogImages = undefined;
+  }
 
   const metadata: Metadata = {
     title: data.title,
@@ -188,22 +217,22 @@ export function generateMetadata(
       : undefined,
     manifest,
     openGraph: {
-      type: 'website',
-      url: data.url,
-      title: data.title,
-      description: data.metaDescription,
-      siteName: defaults.siteName,
-      locale: defaults.language || 'en',
-      images: data.metaImage
-        ? [
-            {
-              url: data.metaImage.url,
-              width: data.metaImage.width,
-              height: data.metaImage.height,
-              alt: data.metaImage.alt,
-            },
-          ]
-        : undefined,
+      type: ogConfig.type || 'website',
+      url: ogConfig.url || data.url,
+      title: ogConfig.title || data.title,
+      description: ogConfig.description || data.metaDescription,
+      siteName: ogConfig.siteName || defaults.siteName,
+      locale: ogConfig.locale || defaults.language || 'en',
+      alternateLocale: ogConfig.alternateLocale,
+      images: ogImages,
+      videos: ogConfig.videos,
+      audio: ogConfig.audio,
+      publishedTime: ogConfig.publishedTime,
+      modifiedTime: ogConfig.modifiedTime,
+      expirationTime: ogConfig.expirationTime,
+      authors: ogConfig.authors,
+      section: ogConfig.section,
+      tags: ogConfig.tags,
     },
     twitter: {
       card: 'summary_large_image',

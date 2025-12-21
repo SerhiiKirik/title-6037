@@ -51,4 +51,16 @@ export const SEO_DEFAULTS: SeoDefaults = {
     apple: '/apple-touch-icon.png',
   },
   manifest: '/site.webmanifest',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    images: [
+      {
+        url: '/title-6037-og-1200x630.png',
+        width: 1200,
+        height: 630,
+        alt: 'Booking Session',
+      },
+    ],
+  },
 };
