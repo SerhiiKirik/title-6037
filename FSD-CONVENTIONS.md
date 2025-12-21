@@ -1,45 +1,60 @@
-FSD conventions
+FSD Conventions
 
 Naming
-• kebab-case everywhere: папки, файли, компоненти в ui/ (наприклад: booking-panel, select-time, confirm-booking).
-• 1 slice = 1 відповідальність / одна бізнес-ідея.
-• Будь-які “публічні” імпорти робимо через index.ts (public API).
+• kebab-case everywhere: folders, files, components in ui/ (e.g., booking-panel, select-time, confirm-booking).
+• 1 slice = 1 responsibility / one business idea.
+• All "public" imports should go through index.ts (public API).
 
-Layers (рівні)
-• app/ — провайдери, глобальні стилі, layout, конфіг верхнього рівня.
-• pages/ — сторінки (композиція widgets/features), мінімум логіки.
-• widgets/ — великі UI-блоки сторінки (компонує features/entities/shared).
-• features/ — користувацькі дії/сценарії (select date/time, confirm, etc).
-• entities/ — доменні сутності + їх стан/логіка (store, selectors, domain helpers).
-• shared/ — перевикористовувані UI компоненти, утиліти, хелпери, базові типи.
+Layers
+• app/ — providers, global styles, layout, top-level config.
+• pages/ — pages (composition of widgets/features), minimal logic.
+• widgets/ — large UI blocks of a page (composes features/entities/shared).
+• features/ — user actions/scenarios (select date/time, confirm, etc).
+• entities/ — domain entities + their state/logic (store, selectors, domain helpers).
+• shared/ — reusable UI components, utilities, helpers, base types.
 
-Slice structure (типова структура слайсу)
-• ui/ — React компоненти слайсу (CSS Modules поруч).
+Slice Structure
+• ui/ — React components of the slice (CSS Modules alongside).
 • model/ — state/store, selectors, derived state.
-• lib/ — чисті функції/утиліти, які належать слайсу.
-• api/ — запити/адаптери (якщо потрібні).
-• index.ts — єдина точка експорту назовні.
+• lib/ — pure functions/utilities that belong to the slice.
+• api/ — requests/adapters (if needed).
+• index.ts — single export point to the outside.
 
-Public API rule
-• Імпорти між слоями/слайсами — тільки через index.ts.
+Public API Rule
+• Imports between layers/slices — only through index.ts.
 • ✅ import { BookingPanel } from '@/widgets/booking-panel'
 • ❌ import { BookingPanel } from '@/widgets/booking-panel/ui/booking-panel'
 
-Dependency direction
-• Дозволений напрям залежностей:
+Dependency Direction
+• Allowed dependency direction:
 • app → pages → widgets → features → entities → shared
-• shared ні від кого не залежить (тільки від своїх підпапок).
+• shared doesn't depend on anyone (only on its own subfolders).
 
-UI conventions
-• Компоненти в ui/ мають однакову структуру:
+UI Conventions
+• Components in ui/ have the same structure:
 • Props interface
-• деструктуризація props
-• hooks зверху
+• props destructuring
+• hooks at the top
 • helper functions
-• effects (якщо треба)
-• return з layout
-• Стилі: CSS Modules (\*.module.css) поруч із компонентом.
+• effects (if needed)
+• return with layout
+• Styles: CSS Modules (\*.module.scss) alongside the component.
 
-Where to put date/time logic
-• “Чиста” логіка дат/слотів (генерація діапазону, 15-хв інтервали, округлення часу) — в entities/_/lib або shared/lib (залежно від загальності).
-• Стан вибору (selected date/time, isConfirmEnabled) — в entities/_/model.
+CSS/SCSS Conventions
+• Use CSS Modules (\*.module.scss).
+• Sort CSS properties according to 9elements CSS Rule Order (https://9elements.com/css-rule-order/):
+
+1. Generated content: content
+2. Position & Layout: position, z-index, top/right/bottom/left, inset, flexbox/grid properties, float, clear
+3. Display & Visibility: display, opacity, transform
+4. Clipping: overflow, clip
+5. Animation: animation, transition
+6. Box Model (outside → in): margin, box-shadow, border, border-radius, box-sizing, width/max-width/min-width, height/max-height/min-height, padding
+7. Background: background (and related), cursor
+8. Typography: font-size, line-height, font-family, font-weight, font-style, text-\*, letter-spacing, word-spacing, color
+   • Use targeted transitions instead of transition: all:
+   • Define only those properties that actually change in :hover/:focus/:active/:disabled
+   • Format: transition-property: transform, background-color, opacity; transition-duration: var(--transition);
+   • Or shorthand: transition: transform 150ms ease, background-color 150ms ease;
+   • Preserve comments and code readability.
+   • Don't change selectors, specificity, or property values without necessity.
