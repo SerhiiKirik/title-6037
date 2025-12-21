@@ -3,26 +3,28 @@
 }
 
 .timeSlot {
-  flex-shrink: 0;
-  min-width: 80px;
-  height: 48px;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  background-color: var(--color-background);
+  transition-property:
+    transform, box-shadow, border-color, background-color, color, opacity;
+  transition-duration: var(--transition);
   border: 2px solid var(--color-border);
   border-radius: var(--border-radius);
+  min-width: 80px;
+  height: 48px;
+  padding: 0 var(--spacing-md);
+  background-color: var(--color-background);
   cursor: pointer;
-  transition: all var(--transition);
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--color-text);
-  padding: 0 var(--spacing-md);
 
   &:hover:not(.disabled) {
-    border-color: var(--color-primary);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primary);
   }
 
   &:active:not(.disabled) {
@@ -30,17 +32,17 @@
   }
 
   &.selected {
-    background-color: var(--color-primary);
     border-color: var(--color-primary);
+    background-color: var(--color-primary);
     color: white;
   }
 
   &.disabled {
-    background-color: var(--color-background);
-    border-color: var(--color-border);
-    color: var(--color-text-secondary);
     opacity: 0.4;
+    border-color: var(--color-border);
+    background-color: var(--color-background);
     cursor: not-allowed;
+    color: var(--color-text-secondary);
 
     &:hover {
       transform: none;
@@ -56,9 +58,9 @@
 }
 
 .emptyMessage {
-  font-size: 0.875rem;
-  color: var(--color-text-secondary);
-  text-align: center;
   padding: var(--spacing-lg);
+  font-size: 0.875rem;
   font-style: italic;
+  text-align: center;
+  color: var(--color-text-secondary);
 }

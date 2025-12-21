@@ -1,21 +1,21 @@
 .container {
-  min-height: calc(100vh - 80px);
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: calc(100vh - 80px);
   padding: var(--spacing-lg);
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .successCard {
-  max-width: 500px;
-  width: 100%;
-  background-color: var(--color-background);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-xl);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  text-align: center;
   animation: slideUp 0.4s ease-out;
+  max-width: 500px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  padding: var(--spacing-xl);
+  background-color: var(--color-background);
+  text-align: center;
 }
 
 @keyframes slideUp {
@@ -33,12 +33,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  animation: scaleIn 0.5s ease-out 0.2s both;
+  margin-bottom: var(--spacing-lg);
+  border-radius: 50%;
   width: 80px;
   height: 80px;
   background-color: #10b981;
-  border-radius: 50%;
-  margin-bottom: var(--spacing-lg);
-  animation: scaleIn 0.5s ease-out 0.2s both;
 }
 
 @keyframes scaleIn {
@@ -57,10 +57,10 @@
 }
 
 .title {
+  margin-bottom: var(--spacing-sm);
   font-size: 2rem;
   font-weight: 800;
   color: var(--color-text);
-  margin-bottom: var(--spacing-sm);
 
   @media (min-width: 640px) {
     font-size: 2.5rem;
@@ -68,18 +68,18 @@
 }
 
 .subtitle {
+  margin-bottom: var(--spacing-xl);
   font-size: 1.125rem;
   color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-xl);
 }
 
 .bookingDetails {
-  background-color: var(--color-selected);
+  animation: fadeIn 0.5s ease-out 0.3s both;
+  margin-bottom: var(--spacing-xl);
   border: 2px solid var(--color-primary);
   border-radius: var(--border-radius);
   padding: var(--spacing-lg);
-  margin-bottom: var(--spacing-xl);
-  animation: fadeIn 0.5s ease-out 0.3s both;
+  background-color: var(--color-selected);
 }
 
 @keyframes fadeIn {
@@ -93,8 +93,8 @@
 
 .detailRow {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: var(--spacing-sm) 0;
 
   &:not(:last-child) {
@@ -105,9 +105,9 @@
 .detailLabel {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--color-text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
 }
 
 .detailValue {
@@ -121,30 +121,30 @@
 }
 
 .detailsTitle {
+  margin-bottom: var(--spacing-md);
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--color-text);
-  margin-bottom: var(--spacing-md);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  color: var(--color-text);
 }
 
 .noDetails {
   font-size: 0.875rem;
-  color: var(--color-text-secondary);
   font-style: italic;
+  color: var(--color-text-secondary);
 }
 
 .emailSection {
-  margin-bottom: var(--spacing-xl);
   animation: fadeIn 0.5s ease-out 0.4s both;
+  margin-bottom: var(--spacing-xl);
 }
 
 .emailPrompt {
+  margin-bottom: var(--spacing-md);
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-text);
-  margin-bottom: var(--spacing-md);
 }
 
 .emailForm {
@@ -154,45 +154,46 @@
 }
 
 .emailInput {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
+  transition-property: box-shadow, border-color, opacity, background-color;
+  transition-duration: var(--transition);
   border: 2px solid var(--color-border);
   border-radius: var(--border-radius);
-  outline: none;
-  transition: all var(--transition);
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
   font-family: inherit;
+  outline: none;
 
   &:focus {
-    border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: var(--color-primary);
   }
 
   &:disabled {
+    opacity: 0.6;
     background-color: #f9fafb;
     cursor: not-allowed;
-    opacity: 0.6;
   }
 
   &::placeholder {
-    color: var(--color-text-secondary);
     opacity: 0.6;
+    color: var(--color-text-secondary);
   }
 }
 
 .emailSuccess {
-  padding: var(--spacing-lg);
-  background-color: #d1fae5;
+  animation: fadeIn 0.3s ease-out;
+  margin-bottom: var(--spacing-xl);
   border: 2px solid #10b981;
   border-radius: var(--border-radius);
-  margin-bottom: var(--spacing-xl);
-  animation: fadeIn 0.3s ease-out;
+  padding: var(--spacing-lg);
+  background-color: #d1fae5;
 }
 
 .emailSuccessText {
-  font-size: 0.875rem;
-  color: #065f46;
-  font-weight: 600;
   margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #065f46;
 
   strong {
     color: #047857;
@@ -201,19 +202,20 @@
 
 .backButton {
   display: inline-block;
+  transition-property: transform, box-shadow, background-color;
+  transition-duration: var(--transition);
+  border-radius: var(--border-radius);
   padding: 0.75rem 2rem;
   background-color: var(--color-primary);
-  color: white;
   font-size: 1rem;
   font-weight: 600;
-  border-radius: var(--border-radius);
   text-decoration: none;
-  transition: all var(--transition);
+  color: white;
 
   &:hover {
-    background-color: var(--color-primary-hover);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+    background-color: var(--color-primary-hover);
   }
 
   &:active {
