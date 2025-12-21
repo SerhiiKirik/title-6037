@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { format, fromUnixTime } from 'date-fns';
 import { Button } from '@/shared/ui';
 import { CheckIcon } from '@/shared/ui/icons/check';
+import Link from 'next/link';
 import styles from './success-page.module.scss';
 
 interface Props {}
@@ -99,6 +100,7 @@ export const SuccessPage: FC<Props> = () => {
               required
               disabled={isSending}
             />
+
             <Button type="submit" disabled={isSending || !email} fullWidth>
               {isSending ? 'Sending...' : 'Send Confirmation'}
             </Button>
@@ -112,9 +114,9 @@ export const SuccessPage: FC<Props> = () => {
         </div>
       )}
 
-      <a href="/" className={styles.backButton}>
+      <Link href="/" className={styles.backButton}>
         Back to Home
-      </a>
+      </Link>
     </div>
   );
 };

@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   min-height: calc(100vh - var(--header-height));
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
 .spinner {
@@ -19,6 +18,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
