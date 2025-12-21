@@ -4,7 +4,7 @@ import React from 'react';
 import cn from 'clsx';
 import type { TimeSlot } from '@/shared/types';
 import { Slider } from '@/shared/ui';
-import styles from './time-slider.module.css';
+import styles from './time-slider.module.scss';
 
 interface Props {
   timeSlots: TimeSlot[];

@@ -3,7 +3,7 @@
 import React from 'react';
 import type { TimeSlot } from '@/shared/types';
 import { TimeSlider } from './time-slider';
-import styles from './time-selector.module.css';
+import styles from './time-selector.module.scss';
 
 interface Props {
   timeSlots: TimeSlot[];

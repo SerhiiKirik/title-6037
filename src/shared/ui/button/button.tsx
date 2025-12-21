@@ -1,6 +1,6 @@
 import React from 'react';
 import cn from 'clsx';
-import styles from './button.module.css';
+import styles from './button.module.scss';
 
 interface Props {
   children: React.ReactNode;

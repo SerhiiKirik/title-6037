@@ -7,7 +7,7 @@ import { DateSelector, TimeSelector } from '@/features/select-date-time';
 import { Button } from '@/shared/ui';
 import { useBookingStore } from '@/entities/booking/model';
 import { generateDateRange, formatDatesForUI } from '@/entities/booking/lib';
-import styles from './booking-panel.module.css';
+import styles from './booking-panel.module.scss';
 
 interface Props {
   title?: string;

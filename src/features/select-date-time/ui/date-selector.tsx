@@ -3,7 +3,7 @@
 import React from 'react';
 import type { DateInfo } from '@/shared/types';
 import { DateSlider } from './date-slider';
-import styles from './date-selector.module.css';
+import styles from './date-selector.module.scss';
 
 interface Props {
   dates: DateInfo[];

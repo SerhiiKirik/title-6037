@@ -61,10 +61,8 @@
   font-weight: 800;
   color: var(--color-text);
   margin-bottom: var(--spacing-sm);
-}
 
-@media (min-width: 640px) {
-  .title {
+  @media (min-width: 640px) {
     font-size: 2.5rem;
   }
 }
@@ -98,10 +96,10 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-sm) 0;
-}
 
-.detailRow:not(:last-child) {
-  border-bottom: 1px solid var(--color-border);
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
 }
 
 .detailLabel {
@@ -116,10 +114,8 @@
   font-size: 1rem;
   font-weight: 700;
   color: var(--color-primary);
-}
 
-@media (min-width: 640px) {
-  .detailValue {
+  @media (min-width: 640px) {
     font-size: 1.125rem;
   }
 }
@@ -165,22 +161,22 @@
   outline: none;
   transition: all var(--transition);
   font-family: inherit;
-}
 
-.emailInput:focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
+  &:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  }
 
-.emailInput:disabled {
-  background-color: #f9fafb;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
+  &:disabled {
+    background-color: #f9fafb;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 
-.emailInput::placeholder {
-  color: var(--color-text-secondary);
-  opacity: 0.6;
+  &::placeholder {
+    color: var(--color-text-secondary);
+    opacity: 0.6;
+  }
 }
 
 .emailSuccess {
@@ -197,10 +193,10 @@
   color: #065f46;
   font-weight: 600;
   margin: 0;
-}
 
-.emailSuccessText strong {
-  color: #047857;
+  strong {
+    color: #047857;
+  }
 }
 
 .backButton {
@@ -213,14 +209,14 @@
   border-radius: var(--border-radius);
   text-decoration: none;
   transition: all var(--transition);
-}
 
-.backButton:hover {
-  background-color: var(--color-primary-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
-}
+  &:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+  }
 
-.backButton:active {
-  transform: translateY(0);
+  &:active {
+    transform: translateY(0);
+  }
 }

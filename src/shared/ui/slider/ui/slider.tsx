@@ -3,7 +3,7 @@
 import React from 'react';
 import { useSlider } from '@/shared/lib/hooks';
 import { ArrowIcon } from '@/shared/ui/icons/arrow';
-import styles from './slider.module.css';
+import styles from './slider.module.scss';
 
 interface Props {
   children: React.ReactNode;

@@ -7,40 +7,40 @@
   cursor: pointer;
   transition: all var(--transition);
   outline: none;
-}
 
-.button:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 }
 
 .primary {
   background-color: var(--color-primary);
   color: white;
-}
 
-.primary:hover:not(:disabled) {
-  background-color: var(--color-primary-hover);
-}
+  &:hover:not(:disabled) {
+    background-color: var(--color-primary-hover);
+  }
 
-.primary:active:not(:disabled) {
-  transform: translateY(1px);
-}
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
 
-.primary:disabled {
-  background-color: var(--color-disabled);
-  cursor: not-allowed;
-  opacity: 0.6;
+  &:disabled {
+    background-color: var(--color-disabled);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
 }
 
 .secondary {
   background-color: transparent;
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
-}
 
-.secondary:hover:not(:disabled) {
-  background-color: var(--color-selected);
+  &:hover:not(:disabled) {
+    background-color: var(--color-selected);
+  }
 }
 
 .fullWidth {

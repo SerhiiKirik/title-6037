@@ -4,7 +4,7 @@ import React from 'react';
 import cn from 'clsx';
 import type { DateInfo } from '@/shared/types';
 import { Slider } from '@/shared/ui';
-import styles from './date-slider.module.css';
+import styles from './date-slider.module.scss';
 
 interface Props {
   dates: DateInfo[];

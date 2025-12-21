@@ -16,16 +16,12 @@
   max-height: 400px;
   overflow-y: auto;
   padding: var(--spacing-xs);
-}
 
-@media (min-width: 640px) {
-  .dateGrid {
+  @media (min-width: 640px) {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
-}
 
-@media (min-width: 1024px) {
-  .dateGrid {
+  @media (min-width: 1024px) {
     grid-template-columns: repeat(7, 1fr);
   }
 }
@@ -42,38 +38,43 @@
   cursor: pointer;
   transition: all var(--transition);
   min-height: 90px;
-}
 
-.dateCard:hover {
-  border-color: var(--color-primary);
-  background-color: var(--color-selected);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+  &:hover {
+    border-color: var(--color-primary);
+    background-color: var(--color-selected);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-.dateCard:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
 
-.dateCard:active {
-  transform: translateY(0);
-}
+  &:active {
+    transform: translateY(0);
+  }
 
-.dateCard.selected {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: white;
-}
+  &.selected {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
 
-.dateCard.selected:hover {
-  background-color: var(--color-primary-hover);
-}
+    &:hover {
+      background-color: var(--color-primary-hover);
+    }
 
-.dateCard.today:not(.selected) {
-  border-color: var(--color-primary);
-  border-width: 2px;
-  border-style: dashed;
+    .todayBadge {
+      background-color: white;
+      color: var(--color-primary);
+    }
+  }
+
+  &.today:not(.selected) {
+    border-color: var(--color-primary);
+    border-width: 2px;
+    border-style: dashed;
+  }
 }
 
 .dayOfWeek {
@@ -104,9 +105,4 @@
   background-color: var(--color-primary);
   color: white;
   border-radius: 999px;
-}
-
-.dateCard.selected .todayBadge {
-  background-color: white;
-  color: var(--color-primary);
 }

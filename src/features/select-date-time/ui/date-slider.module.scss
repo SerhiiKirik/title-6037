@@ -35,31 +35,50 @@
   transition: all var(--transition);
   position: relative;
   padding: var(--spacing-xs);
-}
 
-.dateCard:hover {
-  border-color: var(--color-primary);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+  &:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
 
-.dateCard:active {
-  transform: translateY(0);
-}
+  &:active {
+    transform: translateY(0);
+  }
 
-.dateCard.selected {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: white;
-}
+  &.selected {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: white;
 
-.dateCard.today {
-  border-color: var(--color-primary);
-  border-width: 2px;
-}
+    .dayName {
+      opacity: 1;
+      color: white;
+    }
 
-.dateCard.selected.today {
-  background-color: var(--color-primary);
+    .dayNumber {
+      color: white;
+    }
+
+    .todayBadge {
+      color: var(--color-primary);
+      background-color: white;
+    }
+
+    &.today {
+      background-color: var(--color-primary);
+    }
+  }
+
+  &.today {
+    border-color: var(--color-primary);
+    border-width: 2px;
+  }
+
+  @media (min-width: 768px) {
+    width: 80px;
+    height: 90px;
+  }
 }
 
 .dayName {
@@ -70,19 +89,14 @@
   opacity: 0.8;
 }
 
-.dateCard.selected .dayName {
-  opacity: 1;
-  color: white;
-}
-
 .dayNumber {
   font-size: 1.5rem;
   font-weight: 800;
   line-height: 1;
-}
 
-.dateCard.selected .dayNumber {
-  color: white;
+  @media (min-width: 768px) {
+    font-size: 1.75rem;
+  }
 }
 
 .todayBadge {
@@ -98,20 +112,4 @@
   border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-}
-
-.dateCard.selected .todayBadge {
-  color: var(--color-primary);
-  background-color: white;
-}
-
-@media (min-width: 768px) {
-  .dateCard {
-    width: 80px;
-    height: 90px;
-  }
-
-  .dayNumber {
-    font-size: 1.75rem;
-  }
 }
