@@ -1,9 +1,9 @@
-import React from 'react';
+import type { FC, ReactNode } from 'react';
 import cn from 'clsx';
 import styles from './button.module.scss';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   variant?: 'primary' | 'secondary';
@@ -11,7 +11,7 @@ interface Props {
   type?: 'button' | 'submit';
 }
 
-export const Button: React.FC<Props> = ({
+export const Button: FC<Props> = ({
   children,
   onClick,
   disabled = false,

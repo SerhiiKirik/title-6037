@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FC } from 'react';
 import styles from './header.module.scss';
 
 interface Props {
@@ -6,7 +6,7 @@ interface Props {
   title?: string;
 }
 
-export const Header: React.FC<Props> = ({ logo, title = 'Booking App' }) => (
+export const Header: FC<Props> = ({ logo, title = 'Booking App' }) => (
   <header className={styles.header}>
     <div className={styles.container}>
       <div className={styles.brand}>

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import type { FC } from 'react';
 import cn from 'clsx';
 import type { TimeSlot } from '@/shared/types';
 import { Slider } from '@/shared/ui';
@@ -12,7 +12,7 @@ interface Props {
   onTimeSelect: (minutes: number) => void;
 }
 
-export const TimeSlider: React.FC<Props> = ({
+export const TimeSlider: FC<Props> = ({
   timeSlots,
   selectedTime,
   onTimeSelect,

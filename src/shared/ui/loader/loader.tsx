@@ -1,7 +1,7 @@
-import React from 'react';
+import type { FC } from 'react';
 import styles from './loader.module.scss';
 
-export const Loader: React.FC = () => (
+export const Loader: FC = () => (
   <div className={styles.container}>
     <div className={styles.spinner} />
   </div>

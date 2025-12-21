@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useMemo } from 'react';
+import { type FC, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { format, setHours, setMinutes, startOfDay } from 'date-fns';
 import { DateSelector, TimeSelector } from '@/features/select-date-time';
@@ -14,7 +14,7 @@ interface Props {
   subtitle?: string;
 }
 
-export const BookingPanel: React.FC<Props> = ({
+export const BookingPanel: FC<Props> = ({
   title = 'Book Your Session',
   subtitle = 'Select a date and time that works best for you',
 }) => {

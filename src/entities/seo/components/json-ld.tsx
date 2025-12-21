@@ -29,6 +29,7 @@
  * ```
  */
 
+import type { FC } from 'react';
 import Script from 'next/script';
 
 type Props = {
@@ -36,7 +37,7 @@ type Props = {
 };
 
 // eslint-disable-next-line react/prop-types
-export const JsonLd: React.FC<Props> = ({ data }) => {
+export const JsonLd: FC<Props> = ({ data }) => {
   if (!data) {
     return null;
   }

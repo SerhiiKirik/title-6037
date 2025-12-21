@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import { type FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { format, fromUnixTime } from 'date-fns';
 import { Button } from '@/shared/ui';
@@ -8,7 +8,7 @@ import styles from './success-page.module.scss';
 
 interface Props {}
 
-export const SuccessPage: React.FC<Props> = () => {
+export const SuccessPage: FC<Props> = () => {
   const searchParams = useSearchParams();
   const [bookingInfo, setBookingInfo] = useState<{
     date: string;
