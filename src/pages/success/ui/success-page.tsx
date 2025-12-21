@@ -4,6 +4,7 @@ import { type FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { format, fromUnixTime } from 'date-fns';
 import { Button } from '@/shared/ui';
+import { CheckIcon } from '@/shared/ui/icons/check';
 import styles from './success-page.module.scss';
 
 interface Props {}
@@ -57,20 +58,7 @@ export const SuccessPage: FC<Props> = () => {
   return (
     <div className={styles.successCard}>
       <div className={styles.iconWrapper}>
-        <svg
-          className={styles.checkIcon}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M5 13l4 4L19 7"
-          />
-        </svg>
+        <CheckIcon className={styles.checkIcon} />
       </div>
 
       <h1 className={styles.title}>Booking Confirmed!</h1>
