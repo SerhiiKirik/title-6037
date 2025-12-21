@@ -26,6 +26,13 @@
   --spacing-xl: 2rem;
   --border-radius: 0.5rem;
   --transition: 150ms ease-in-out;
+  --header-height: 64px;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --header-height: 86px;
+  }
 }
 
 body {
