@@ -27,7 +27,7 @@ import type { SeoDefaults } from './types';
  */
 export const SEO_DEFAULTS: SeoDefaults = {
   siteName: 'Booking Session',
-  siteUrl: 'http://localhost:3000',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
   defaultTitle: 'Booking Session - Schedule Your Appointment',
   defaultMetaDescription:
     'Book your appointment with ease. Select your preferred date and time slot.',
@@ -35,14 +35,15 @@ export const SEO_DEFAULTS: SeoDefaults = {
   organization: {
     name: 'Booking Session',
     logo: {
-      url: 'http://localhost:3000/logo.png',
+      url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/logo.png`,
       width: 250,
       height: 60,
     },
     sameAs: [
-      'https://twitter.com/yourhandle',
-      'https://linkedin.com/company/yourcompany',
-      'https://facebook.com/yourpage',
+      'https://www.linkedin.com/company/6037-venture-partnership',
+      'https://www.facebook.com/GenTechPartners/',
+      'https://www.instagram.com/genesis.tech/',
+      'https://www.gen.tech/company/6037-venture-partnership',
     ],
   },
   icons: {
