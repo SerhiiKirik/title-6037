@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import type { FC } from 'react';
 import cn from 'clsx';
 import type { DateInfo } from '@/shared/types';
 import { Slider } from '@/shared/ui';
@@ -11,7 +11,7 @@ interface Props {
   onDateSelect: (date: Date) => void;
 }
 
-export const DateSlider: React.FC<Props> = ({ dates, onDateSelect }) => {
+export const DateSlider: FC<Props> = ({ dates, onDateSelect }) => {
   // Group dates by month
   const datesByMonth = dates.reduce(
     (acc, dateInfo) => {

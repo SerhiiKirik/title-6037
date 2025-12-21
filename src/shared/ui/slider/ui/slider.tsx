@@ -1,16 +1,16 @@
 'use client';
 
-import React from 'react';
+import type { FC, ReactNode } from 'react';
 import { useSlider } from '@/shared/lib/hooks';
 import { ArrowIcon } from '@/shared/ui/icons/arrow';
 import styles from './slider.module.scss';
 
 interface Props {
-  children: React.ReactNode;
+  children: ReactNode;
   scrollAmount?: number;
 }
 
-export const Slider: React.FC<Props> = ({ children, scrollAmount = 280 }) => {
+export const Slider: FC<Props> = ({ children, scrollAmount = 280 }) => {
   const {
     containerRef,
     canScrollLeft,
