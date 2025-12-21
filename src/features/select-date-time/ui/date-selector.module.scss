@@ -1,0 +1,110 @@
+.container {
+  width: 100%;
+}
+
+.title {
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.dateGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: var(--spacing-md);
+  overflow-y: auto;
+  max-height: 400px;
+  padding: var(--spacing-xs);
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+.dateCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition-property:
+    transform, box-shadow, border-color, background-color, color;
+  transition-duration: var(--transition);
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  min-height: 90px;
+  padding: var(--spacing-md);
+  background-color: var(--color-background);
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-color: var(--color-primary);
+    background-color: var(--color-selected);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &.selected {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+    color: white;
+
+    &:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    .todayBadge {
+      background-color: white;
+      color: var(--color-primary);
+    }
+  }
+
+  &.today:not(.selected) {
+    border-color: var(--color-primary);
+    border-width: 2px;
+    border-style: dashed;
+  }
+}
+
+.dayOfWeek {
+  opacity: 0.7;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.dayOfMonth {
+  margin: var(--spacing-xs) 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.month {
+  opacity: 0.8;
+  font-size: 0.875rem;
+}
+
+.todayBadge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  border-radius: 999px;
+  padding: 2px 6px;
+  background-color: var(--color-primary);
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: white;
+}

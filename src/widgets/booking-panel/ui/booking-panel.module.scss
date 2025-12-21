@@ -1,43 +1,35 @@
 .panel {
-  width: 100%;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: var(--spacing-md);
   background-color: var(--color-background);
-}
 
-@media (min-width: 640px) {
-  .panel {
+  @media (min-width: 640px) {
     padding: var(--spacing-lg);
   }
-}
 
-@media (min-width: 1024px) {
-  .panel {
+  @media (min-width: 1024px) {
     padding: var(--spacing-xl);
   }
 }
 
 .header {
-  text-align: center;
   margin-bottom: var(--spacing-xl);
+  text-align: center;
 }
 
 .title {
+  margin-bottom: var(--spacing-sm);
   font-size: 1.875rem;
   font-weight: 800;
   color: var(--color-text);
-  margin-bottom: var(--spacing-sm);
-}
 
-@media (min-width: 640px) {
-  .title {
+  @media (min-width: 640px) {
     font-size: 2.25rem;
   }
-}
 
-@media (min-width: 1024px) {
-  .title {
+  @media (min-width: 1024px) {
     font-size: 3rem;
   }
 }
@@ -45,10 +37,8 @@
 .subtitle {
   font-size: 1rem;
   color: var(--color-text-secondary);
-}
 
-@media (min-width: 640px) {
-  .subtitle {
+  @media (min-width: 640px) {
     font-size: 1.125rem;
   }
 }
@@ -60,30 +50,29 @@
 }
 
 .footer {
-  margin-top: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  border-top: 2px solid var(--color-border);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-lg);
-}
+  margin-top: var(--spacing-xl);
+  border-top: 2px solid var(--color-border);
+  padding-top: var(--spacing-lg);
 
-@media (min-width: 640px) {
-  .footer {
+  @media (min-width: 640px) {
     max-width: 400px;
-    margin-left: auto;
     margin-right: auto;
+    margin-left: auto;
   }
 }
 
 .selectedSummary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background: var(--color-selected);
+  animation: fadeIn 0.3s ease-in-out;
+  margin: 0;
   border: 2px solid var(--color-primary);
   border-radius: var(--border-radius);
   padding: var(--spacing-lg);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--color-selected);
   text-align: center;
-  animation: fadeIn 0.3s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -98,23 +87,21 @@
 }
 
 .summaryLabel {
+  margin-bottom: var(--spacing-sm);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--color-text-secondary);
-  margin-bottom: var(--spacing-sm);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  color: var(--color-text-secondary);
 }
 
 .summaryDate {
+  margin-bottom: var(--spacing-xs);
   font-size: 1.125rem;
   font-weight: 700;
   color: var(--color-primary);
-  margin-bottom: var(--spacing-xs);
-}
 
-@media (min-width: 640px) {
-  .summaryDate {
+  @media (min-width: 640px) {
     font-size: 1.25rem;
   }
 }
@@ -123,10 +110,8 @@
   font-size: 1rem;
   font-weight: 600;
   color: var(--color-text);
-}
 
-@media (min-width: 640px) {
-  .summaryTime {
+  @media (min-width: 640px) {
     font-size: 1.125rem;
   }
 }

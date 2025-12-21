@@ -1,22 +1,20 @@
 .header {
-  width: 100%;
-  background-color: var(--color-background);
-  border-bottom: 2px solid var(--color-border);
   position: sticky;
-  top: 0;
   z-index: 100;
-  backdrop-filter: blur(8px);
+  top: 0;
+  width: 100%;
+  border-bottom: 2px solid var(--color-border);
+  background-color: var(--color-background);
   background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: var(--spacing-md) var(--spacing-lg);
-}
 
-@media (min-width: 640px) {
-  .container {
+  @media (min-width: 640px) {
     padding: var(--spacing-lg) var(--spacing-xl);
   }
 }
@@ -28,25 +26,21 @@
 }
 
 .logo {
-  height: 32px;
   width: auto;
-}
+  height: 32px;
 
-@media (min-width: 640px) {
-  .logo {
+  @media (min-width: 640px) {
     height: 40px;
   }
 }
 
 .title {
+  margin: 0;
   font-size: 1.25rem;
   font-weight: 700;
   color: var(--color-primary);
-  margin: 0;
-}
 
-@media (min-width: 640px) {
-  .title {
+  @media (min-width: 640px) {
     font-size: 1.5rem;
   }
 }

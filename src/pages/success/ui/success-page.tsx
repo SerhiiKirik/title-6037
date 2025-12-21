@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { format, fromUnixTime } from 'date-fns';
 import { Button } from '@/shared/ui';
-import styles from './success-page.module.css';
+import styles from './success-page.module.scss';
 
 interface Props {}
 
