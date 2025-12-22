@@ -1,0 +1,26 @@
+{
+  "booking": {
+    "title": "Book Your Session",
+    "subtitle": "Select a date and time that works best for you",
+    "yourSelection": "Your selection:",
+    "at": "at",
+    "confirmButton": "Confirm Booking"
+  },
+  "success": {
+    "title": "Booking Confirmed!",
+    "subtitle": "Your session has been successfully booked",
+    "detailsTitle": "Your Booking Details:",
+    "dateLabel": "Date:",
+    "timeLabel": "Time:",
+    "loading": "Loading booking details...",
+    "emailPrompt": "Enter your email to receive a confirmation",
+    "emailPlaceholder": "your.email@example.com",
+    "sendButton": "Send Confirmation",
+    "sending": "Sending...",
+    "emailSent": "Confirmation email sent to",
+    "backButton": "Back to Home"
+  },
+  "common": {
+    "language": "Language"
+  }
+}

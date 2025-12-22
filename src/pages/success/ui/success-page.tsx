@@ -2,14 +2,17 @@
 
 import { type FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { format, fromUnixTime } from 'date-fns';
 import { Button } from '@/shared/ui';
 import { CheckIcon } from '@/shared/ui/icons/check';
+import { Link } from '@/shared/config/i18n';
 import styles from './success-page.module.scss';
 
 interface Props {}
 
 export const SuccessPage: FC<Props> = () => {
+  const t = useTranslations('success');
   const searchParams = useSearchParams();
   const [bookingInfo, setBookingInfo] = useState<{
     date: string;
@@ -61,60 +64,57 @@ export const SuccessPage: FC<Props> = () => {
         <CheckIcon className={styles.checkIcon} />
       </div>
 
-      <h1 className={styles.title}>Booking Confirmed!</h1>
-      <p className={styles.subtitle}>
-        Your session has been successfully booked
-      </p>
+      <h1 className={styles.title}>{t('title')}</h1>
+      <p className={styles.subtitle}>{t('subtitle')}</p>
 
       {bookingInfo ? (
         <div className={styles.bookingDetails}>
-          <p className={styles.detailsTitle}>Your Booking Details:</p>
+          <p className={styles.detailsTitle}>{t('detailsTitle')}</p>
           <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Date:</span>
+            <span className={styles.detailLabel}>{t('dateLabel')}</span>
             <span className={styles.detailValue}>{bookingInfo.date}</span>
           </div>
           <div className={styles.detailRow}>
-            <span className={styles.detailLabel}>Time:</span>
+            <span className={styles.detailLabel}>{t('timeLabel')}</span>
             <span className={styles.detailValue}>{bookingInfo.time}</span>
           </div>
         </div>
       ) : (
         <div className={styles.bookingDetails}>
-          <p className={styles.noDetails}>Loading booking details...</p>
+          <p className={styles.noDetails}>{t('loading')}</p>
         </div>
       )}
 
       {!emailSent ? (
         <div className={styles.emailSection}>
-          <p className={styles.emailPrompt}>
-            Enter your email to receive a confirmation
-          </p>
+          <p className={styles.emailPrompt}>{t('emailPrompt')}</p>
           <form onSubmit={handleSendEmail} className={styles.emailForm}>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="your.email@example.com"
+              placeholder={t('emailPlaceholder')}
               className={styles.emailInput}
               required
               disabled={isSending}
             />
+
             <Button type="submit" disabled={isSending || !email} fullWidth>
-              {isSending ? 'Sending...' : 'Send Confirmation'}
+              {isSending ? t('sending') : t('sendButton')}
             </Button>
           </form>
         </div>
       ) : (
         <div className={styles.emailSuccess}>
           <p className={styles.emailSuccessText}>
-            ✓ Confirmation email sent to <strong>{email}</strong>
+            ✓ {t('emailSent')} <strong>{email}</strong>
           </p>
         </div>
       )}
 
-      <a href="/" className={styles.backButton}>
-        Back to Home
-      </a>
+      <Link href="/" className={styles.backButton}>
+        {t('backButton')}
+      </Link>
     </div>
   );
 };

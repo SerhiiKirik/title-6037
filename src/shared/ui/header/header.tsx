@@ -1,4 +1,5 @@
 import type { FC } from 'react';
+import { LanguageSwitcher } from '@/features/language-switcher';
 import styles from './header.module.scss';
 
 interface Props {
@@ -16,6 +17,7 @@ export const Header: FC<Props> = ({ logo, title = 'Booking App' }) => (
         )}
         <h1 className={styles.title}>{title}</h1>
       </div>
+      <LanguageSwitcher />
     </div>
   </header>
 );
