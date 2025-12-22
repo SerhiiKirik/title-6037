@@ -30,7 +30,7 @@ const LocaleLayout = async ({ children, params }: Props) => {
   return (
     <html lang={localeData?.htmlLang || 'en'}>
       <body>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Header title="Booking Session" />
           <main>{children}</main>
         </NextIntlClientProvider>

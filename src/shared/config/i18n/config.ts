@@ -16,14 +16,14 @@ export const localeMetadata = {
   en: {
     name: 'English',
     nativeName: 'English',
-    flag: '<ì<ç',
+    flag: '🇺🇸',
     htmlLang: 'en',
     ogLocale: 'en_US',
   },
   uk: {
     name: 'Ukrainian',
-    nativeName: '#:@0W=AL:0',
-    flag: '<ú<æ',
+    nativeName: 'Українська',
+    flag: '🇺🇦',
     htmlLang: 'uk',
     ogLocale: 'uk_UA',
   },
