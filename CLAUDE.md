@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+**For AI assistants:** Also read **AGENTS.md** for detailed patterns, templates, and anti-patterns when working on this codebase.
+
 ## Commands
 
 ```bash
@@ -28,6 +30,8 @@ The codebase is organized into layers with unidirectional dependencies:
 ```
 app → pages → widgets → features → entities → shared
 ```
+
+Each layer can only import from layers to the right. The `shared` layer doesn't depend on anyone (only its own subfolders).
 
 ### Directory Structure
 
@@ -60,7 +64,7 @@ export default () => <BookingPage />;
 
 Each slice follows a standard internal structure:
 
-- **ui/** - React components (CSS Modules co-located)
+- **ui/** - React components (SCSS Modules co-located)
 - **model/** - State/store, selectors, derived state
 - **lib/** - Pure functions/utilities belonging to the slice
 - **api/** - Requests/adapters (if needed)
@@ -97,7 +101,7 @@ Components in `ui/` should follow this structure:
 5. Effects (if needed)
 6. Return with layout
 
-Use CSS Modules (`*.module.css`) co-located with components.
+Use SCSS Modules (`*.module.scss`) co-located with components.
 
 ### Domain Logic Placement
 
@@ -107,14 +111,17 @@ Use CSS Modules (`*.module.css`) co-located with components.
 ## Technology Stack
 
 - **Next.js 14** (App Router)
-- **TypeScript**
+- **TypeScript** (strict mode)
 - **Zustand** - State management (lightweight, minimal boilerplate)
 - **date-fns** - Date/time utilities (modular, tree-shakable, TypeScript-friendly)
-- **CSS Modules** - Component styling (scoped, co-located with components)
+- **SCSS Modules** - Component styling (scoped, co-located with components)
+- **clsx** - Conditional className (object-style only)
+- **modern-normalize** - CSS normalization
 - **ESLint (Airbnb config)** - Code quality
 - **Prettier** - Code formatting (single quotes, semicolons, trailing commas)
+- **Husky + lint-staged** - Pre-commit hooks
 
-## Project-Specific Notes
+## Project-Specific Conventions
 
 ### State Management
 
@@ -163,6 +170,67 @@ export const MyComponent: React.FC<Props> = ({ title, onClick }) => {
 };
 ```
 
+### SCSS Conventions
+
+- Use SCSS Modules (`*.module.scss`) co-located with components
+- Use nesting where appropriate
+- **CSS property order** follows 9elements CSS Rule Order:
+  1. Generated content: `content`
+  2. Position & Layout: `position`, `z-index`, `top/right/bottom/left`, `inset`, flexbox/grid properties, `float`, `clear`
+  3. Display & Visibility: `display`, `opacity`, `transform`
+  4. Clipping: `overflow`, `clip`
+  5. Animation: `animation`, `transition`
+  6. Box Model (outside → in): `margin`, `box-shadow`, `border`, `border-radius`, `box-sizing`, `width/max-width/min-width`, `height/max-height/min-height`, `padding`
+  7. Background: `background` (and related), `cursor`
+  8. Typography: `font-size`, `line-height`, `font-family`, `font-weight`, `font-style`, `text-*`, `letter-spacing`, `word-spacing`, `color`
+- **Transitions:** Use targeted transitions instead of `transition: all`:
+  - Define only those properties that actually change in `:hover/:focus/:active/:disabled`
+  - Format: `transition-property: transform, background-color, opacity; transition-duration: var(--transition);`
+  - Or shorthand: `transition: transform 150ms ease, background-color 150ms ease;`
+
+### clsx Usage
+
+Always use **object-style** syntax for conditional classNames:
+
+```typescript
+// ✅ Correct
+className={clsx(styles.button, {
+  [styles.active]: isActive,
+  [styles.disabled]: isDisabled,
+})}
+
+// ❌ Incorrect
+className={clsx(styles.button, isActive && styles.active)}
+```
+
+### SEO Configuration
+
+SEO is managed in `src/entities/seo/`:
+
+- **config.ts** - Default SEO values (`SEO_DEFAULTS`)
+- **utils.ts** - `generateMetadata()` and `generateJsonLdData()` functions
+- **types.ts** - TypeScript definitions
+- **components/json-ld.tsx** - JSON-LD component for structured data
+
+**Usage in pages:**
+
+```typescript
+import { generateMetadata, SEO_DEFAULTS } from '@/entities/seo';
+
+export const metadata = generateMetadata(
+  {
+    url: 'https://yoursite.com/page/',
+    title: 'Page Title',
+    metaDescription: 'Page description',
+    robots: true,
+  },
+  SEO_DEFAULTS,
+);
+```
+
+- Organization, icons, manifest, and OpenGraph defaults are automatically included from `SEO_DEFAULTS`
+- Override per-page as needed by passing specific values
+
 ### Responsive Design
 
 - Mobile-first approach
@@ -178,3 +246,45 @@ All imports use the `@/` alias which maps to `src/`:
 import { BookingPanel } from '@/widgets/booking-panel';
 import { useBookingStore } from '@/entities/booking';
 ```
+
+## Code Quality
+
+### Pre-commit Hooks
+
+This project uses Husky + lint-staged to automatically run checks before commits:
+
+- ESLint with autofix
+- Prettier formatting
+- Type checking
+- Build verification
+
+**These hooks enforce code quality and prevent broken commits.**
+
+### ESLint Configuration
+
+- Airbnb config (TypeScript variant)
+- Next.js core web vitals
+- Prettier integration
+- Custom rules:
+  - React components must use arrow functions
+  - No default exports required (named exports preferred)
+  - No default props required
+  - Button type not enforced
+
+### Prettier Configuration
+
+- Single quotes
+- Semicolons required
+- Trailing commas
+- 80 character print width
+- 2 space indentation
+
+## Important Files
+
+- **`AGENTS.md`** - Detailed patterns, templates, and anti-patterns for AI assistants
+- **`FSD-CONVENTIONS.md`** - Detailed FSD architectural rules
+- **`src/app/globals.css`** - CSS custom properties and global styles
+- **`src/entities/booking/model/booking-store.ts`** - Main state management
+- **`src/entities/booking/lib/`** - Core date/time logic
+- **`src/entities/seo/`** - SEO utilities and configuration
+- **`tsconfig.json`** - TypeScript configuration with path aliases
