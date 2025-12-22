@@ -1,22 +1,10 @@
-import type { Metadata } from 'next';
-import { Header } from '@/shared/ui';
-import { SEO_DEFAULTS } from '@/entities/seo';
-import './globals.css';
+/**
+ * Root Layout
+ *
+ * This is the root layout for the app. It only renders children without
+ * any providers or HTML structure, as those are handled in [locale]/layout.tsx
+ */
 
-export const metadata: Metadata = {
-  title: 'Booking Session',
-  description: 'Book your session with ease',
-  icons: SEO_DEFAULTS.icons,
-  manifest: SEO_DEFAULTS.manifest,
-};
-
-const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html lang="en">
-    <body>
-      <Header title="Booking Session" />
-      <main>{children}</main>
-    </body>
-  </html>
-);
+const RootLayout = ({ children }: { children: React.ReactNode }) => children;
 
 export default RootLayout;

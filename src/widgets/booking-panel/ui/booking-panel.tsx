@@ -2,6 +2,7 @@
 
 import { type FC, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { format, setHours, setMinutes, startOfDay } from 'date-fns';
 import { DateSelector, TimeSelector } from '@/features/select-date-time';
 import { Button } from '@/shared/ui';
@@ -9,15 +10,10 @@ import { useBookingStore } from '@/entities/booking/model';
 import { generateDateRange, formatDatesForUI } from '@/entities/booking/lib';
 import styles from './booking-panel.module.scss';
 
-interface Props {
-  title?: string;
-  subtitle?: string;
-}
+interface Props {}
 
-export const BookingPanel: FC<Props> = ({
-  title = 'Book Your Session',
-  subtitle = 'Select a date and time that works best for you',
-}) => {
+export const BookingPanel: FC<Props> = () => {
+  const t = useTranslations('booking');
   const router = useRouter();
 
   // Zustand store
@@ -70,15 +66,17 @@ export const BookingPanel: FC<Props> = ({
     const timestamp = confirmBooking();
 
     if (timestamp) {
-      router.push(`/success?timestamp=${timestamp}`);
+      // Get current locale from pathname
+      const currentLocale = window.location.pathname.split('/')[1];
+      router.push(`/${currentLocale}/success?timestamp=${timestamp}`);
     }
   };
 
   return (
     <div className={styles.panel}>
       <div className={styles.header}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.subtitle}>{subtitle}</p>
+        <h1 className={styles.title}>{t('title')}</h1>
+        <p className={styles.subtitle}>{t('subtitle')}</p>
       </div>
 
       <div className={styles.content}>
@@ -95,9 +93,11 @@ export const BookingPanel: FC<Props> = ({
         <div className={styles.footer}>
           {formattedSelection && (
             <div className={styles.selectedSummary}>
-              <p className={styles.summaryLabel}>Your selection:</p>
+              <p className={styles.summaryLabel}>{t('yourSelection')}</p>
               <p className={styles.summaryDate}>{formattedSelection.date}</p>
-              <p className={styles.summaryTime}>at {formattedSelection.time}</p>
+              <p className={styles.summaryTime}>
+                {t('at')} {formattedSelection.time}
+              </p>
             </div>
           )}
           <Button
@@ -105,7 +105,7 @@ export const BookingPanel: FC<Props> = ({
             disabled={!isConfirmEnabled}
             fullWidth
           >
-            Confirm Booking
+            {t('confirmButton')}
           </Button>
         </div>
       </div>

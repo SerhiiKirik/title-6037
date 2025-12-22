@@ -1,0 +1,56 @@
+.switcher {
+  display: flex;
+  gap: 8px;
+
+  &.pending {
+    opacity: 0.6;
+    cursor: wait;
+  }
+}
+
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border: 2px solid var(--color-border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  background-color: var(--color-bg);
+  cursor: pointer;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    transform 150ms ease;
+
+  &:hover:not(:disabled) {
+    border-color: var(--color-primary);
+    background-color: var(--color-bg-hover);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &.active {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary-bg);
+    cursor: default;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.flag {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
