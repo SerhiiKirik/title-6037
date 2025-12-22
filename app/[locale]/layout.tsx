@@ -24,7 +24,7 @@ interface Props {
 
 const LocaleLayout = async ({ children, params }: Props) => {
   const { locale } = params;
-  const messages = await getMessages();
+  const messages = await getMessages({ locale });
   const localeData = localeMetadata[locale as keyof typeof localeMetadata];
 
   return (

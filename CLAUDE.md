@@ -112,6 +112,7 @@ Use SCSS Modules (`*.module.scss`) co-located with components.
 
 - **Next.js 14** (App Router)
 - **TypeScript** (strict mode)
+- **next-intl** - Internationalization (i18n) with App Router support
 - **Zustand** - State management (lightweight, minimal boilerplate)
 - **date-fns** - Date/time utilities (modular, tree-shakable, TypeScript-friendly)
 - **SCSS Modules** - Component styling (scoped, co-located with components)
@@ -169,6 +170,113 @@ export const MyComponent: React.FC<Props> = ({ title, onClick }) => {
   return <div>{title}</div>;
 };
 ```
+
+### Internationalization (i18n)
+
+The project uses **next-intl** for internationalization with the Next.js App Router.
+
+**Supported locales:**
+
+- English (`en`) - default
+- Ukrainian (`uk`)
+
+**Configuration structure:**
+
+```
+src/shared/config/i18n/
+├── config.ts              # Locale definitions and metadata
+├── messages/
+│   ├── en.json           # English translations
+│   └── uk.json           # Ukrainian translations
+└── index.ts              # Public API
+
+i18n.ts                   # next-intl configuration (root)
+middleware.ts             # Locale routing middleware (root)
+```
+
+**Key files:**
+
+- **`i18n.ts`** - Loads translation messages based on locale
+- **`middleware.ts`** - Handles automatic locale routing (always prefixes URLs with locale)
+- **`src/shared/config/i18n/config.ts`** - Locale metadata for SEO (htmlLang, ogLocale, flags, native names)
+
+**App structure:**
+
+```
+app/
+├── layout.tsx           # Root layout (minimal, delegates to locale layout)
+└── [locale]/            # Locale-specific routing
+    ├── layout.tsx       # Wraps with NextIntlClientProvider
+    ├── page.tsx         # Home page
+    └── success/
+        └── page.tsx     # Success page
+```
+
+**Using translations in components:**
+
+```typescript
+'use client';
+
+import { useTranslations } from 'next-intl';
+
+export const BookingPanel: FC = () => {
+  const t = useTranslations('booking');
+
+  return (
+    <div>
+      <h1>{t('title')}</h1>
+      <p>{t('subtitle')}</p>
+      <button>{t('confirmButton')}</button>
+    </div>
+  );
+};
+```
+
+**Translation file structure:**
+
+```json
+{
+  "booking": {
+    "title": "Book Your Session",
+    "subtitle": "Select a date and time",
+    "confirmButton": "Confirm Booking"
+  },
+  "success": {
+    "title": "Booking Confirmed!",
+    "subtitle": "Your session has been successfully booked"
+  },
+  "common": {
+    "language": "Language"
+  }
+}
+```
+
+**Language switcher:**
+
+Located in `src/features/language-switcher/`, the switcher:
+
+- Uses `useLocale()` to get current locale
+- Uses `useRouter()` and `usePathname()` from `next/navigation` for navigation
+- Strips current locale from pathname and adds new locale
+- Uses `useTransition()` for loading state
+- Implemented as a select dropdown with flags and native language names
+
+**Locale-aware links:**
+
+```typescript
+import { useLocale } from 'next-intl';
+import Link from 'next/link';
+
+export const Component: FC = () => {
+  const locale = useLocale();
+
+  return <Link href={`/${locale}`}>Home</Link>;
+};
+```
+
+**SEO integration:**
+
+The locale metadata in `src/shared/config/i18n/config.ts` includes `htmlLang` and `ogLocale` properties used by the SEO entity for proper language tags in HTML and OpenGraph metadata.
 
 ### SCSS Conventions
 

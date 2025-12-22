@@ -2,18 +2,17 @@
 
 import { type FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useTranslations, useLocale } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { format, fromUnixTime } from 'date-fns';
 import { Button } from '@/shared/ui';
 import { CheckIcon } from '@/shared/ui/icons/check';
-import Link from 'next/link';
+import { Link } from '@/shared/config/i18n';
 import styles from './success-page.module.scss';
 
 interface Props {}
 
 export const SuccessPage: FC<Props> = () => {
   const t = useTranslations('success');
-  const locale = useLocale();
   const searchParams = useSearchParams();
   const [bookingInfo, setBookingInfo] = useState<{
     date: string;
@@ -113,7 +112,7 @@ export const SuccessPage: FC<Props> = () => {
         </div>
       )}
 
-      <Link href={`/${locale}`} className={styles.backButton}>
+      <Link href="/" className={styles.backButton}>
         {t('backButton')}
       </Link>
     </div>

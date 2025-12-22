@@ -1,11 +1,15 @@
 'use client';
 
-import { type FC, useTransition } from 'react';
+import { type FC, type ChangeEvent, useTransition } from 'react';
 import { useLocale } from 'next-intl';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname as useNextPathname } from 'next/navigation';
 import clsx from 'clsx';
-import { locales, localeMetadata } from '@/shared/config/i18n';
-import type { Locale } from '@/shared/config/i18n';
+import {
+  useRouter,
+  locales,
+  localeMetadata,
+  type Locale,
+} from '@/shared/config/i18n';
 import styles from './language-switcher.module.scss';
 
 interface Props {
@@ -14,50 +18,48 @@ interface Props {
 
 export const LanguageSwitcher: FC<Props> = ({ className }) => {
   const router = useRouter();
-  const pathname = usePathname();
   const currentLocale = useLocale();
   const [isPending, startTransition] = useTransition();
+  // Use Next.js pathname to get the FULL pathname with locale
+  const fullPathname = useNextPathname();
 
-  const handleLocaleChange = (newLocale: Locale) => {
-    if (newLocale === currentLocale || !pathname) return;
+  const handleLocaleChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    const newLocale = event.target.value as Locale;
+
+    if (newLocale === currentLocale || !fullPathname) return;
 
     startTransition(() => {
-      // Replace the locale in the pathname
-      // pathname from next/navigation already includes the locale
-      const segments = pathname.split('/');
-      segments[1] = newLocale; // Replace locale segment
-      const newPath = segments.join('/');
+      // Get pathname without the current locale prefix
+      const pathnameWithoutLocale = fullPathname.replace(
+        new RegExp(`^/${currentLocale}`),
+        '',
+      );
 
-      router.push(newPath);
+      // Navigate to the same path with new locale
+      router.replace(pathnameWithoutLocale || '/', { locale: newLocale });
     });
   };
 
   return (
-    <div
-      className={clsx(styles.switcher, className, {
-        [styles.pending]: isPending,
-      })}
-    >
-      {locales.map((locale) => {
-        const metadata = localeMetadata[locale];
-        const isActive = locale === currentLocale;
-
-        return (
-          <button
-            key={locale}
-            onClick={() => handleLocaleChange(locale)}
-            className={clsx(styles.button, {
-              [styles.active]: isActive,
-            })}
-            disabled={isActive || isPending}
-            aria-label={`Switch to ${metadata.name}`}
-            type="button"
-          >
-            <span className={styles.flag}>{metadata.flag}</span>
-            <span className={styles.name}>{metadata.nativeName}</span>
-          </button>
-        );
-      })}
+    <div className={clsx(styles.switcher, className)}>
+      <select
+        value={currentLocale}
+        onChange={handleLocaleChange}
+        disabled={isPending}
+        className={clsx(styles.select, {
+          [styles.pending]: isPending,
+        })}
+        aria-label="Select language"
+      >
+        {locales.map((locale) => {
+          const metadata = localeMetadata[locale];
+          return (
+            <option key={locale} value={locale}>
+              {metadata.flag} {metadata.nativeName}
+            </option>
+          );
+        })}
+      </select>
     </div>
   );
 };
