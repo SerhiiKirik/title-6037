@@ -6,7 +6,7 @@
 
   border: none;
   border-radius: 100px;
-  padding: 12px 24px;
+  padding: 18px 24px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 600;
@@ -14,11 +14,11 @@
 }
 
 .primary {
-  background-color: $color-primary;
-  color: white;
+  background-color: $color-btn-active;
+  color: $color-text-white;
 
   &:hover:not(:disabled) {
-    background-color: $color-primary;
+    background-color: $color-btn-active;
   }
 
   &:active:not(:disabled) {

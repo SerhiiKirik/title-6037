@@ -13,6 +13,8 @@
 
   @include onDesktop {
     max-width: 568px;
+    min-height: auto;
+    height: 620px;
     padding: $spacing-xl;
 
     border-radius: 24px;
@@ -21,6 +23,20 @@
 
 .header {
   margin-bottom: $spacing-xl;
+
+  @include onDesktop {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+.headerImage {
+  display: none;
+
+  @include onDesktop {
+    display: block;
+  }
 }
 
 .title {
@@ -30,6 +46,10 @@
   font-size: 28px;
   font-weight: 700;
   color: $color-text;
+
+  :global(html[lang='uk']) & {
+    font-family: var(--font-poppins);
+  }
 }
 
 .subtitle {

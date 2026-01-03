@@ -8,11 +8,10 @@ import { DateSelector, TimeSelector } from '@/features/select-date-time';
 import { Button } from '@/shared/ui';
 import { useBookingStore } from '@/entities/booking/model';
 import { generateDateRange, formatDatesForUI } from '@/entities/booking/lib';
+import Image from 'next/image';
 import styles from './booking-panel.module.scss';
 
-interface Props {}
-
-export const BookingPanel: FC<Props> = () => {
+export const BookingPanel: FC = () => {
   const t = useTranslations('booking');
   const router = useRouter();
 
@@ -76,8 +75,19 @@ export const BookingPanel: FC<Props> = () => {
     <div className={styles.panel}>
       <div className={styles.content}>
         <div className={styles.header}>
-          <h1 className={styles.title}>{t('title')}</h1>
-          <p className={styles.subtitle}>{t('subtitle')}</p>
+          <Image
+            src="/person-mobile.webp"
+            alt="Smiling woman with curly hair wearing a teal sweater and a brown coat against an orange background."
+            width={120}
+            height={120}
+            priority
+            className={styles.headerImage}
+          />
+
+          <div>
+            <h1 className={styles.title}>{t('title')}</h1>
+            <p className={styles.subtitle}>{t('subtitle')}</p>
+          </div>
         </div>
 
         <DateSelector dates={formattedDates} onDateSelect={handleDateSelect} />

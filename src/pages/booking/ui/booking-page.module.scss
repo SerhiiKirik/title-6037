@@ -1,0 +1,7 @@
+@import '@/shared/styles';
+
+.hero {
+  @include onDesktop {
+    display: none;
+  }
+}

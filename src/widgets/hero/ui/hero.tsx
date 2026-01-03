@@ -1,7 +1,7 @@
 import styles from './hero.module.scss';
 
 export const Hero = () => (
-  <section className={styles.hero}>
+  <section className={styles.container}>
     <div className={styles.content}>
       <h1 className={styles.title}>Cool session</h1>
 

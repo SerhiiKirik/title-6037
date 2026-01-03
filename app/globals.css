@@ -90,8 +90,8 @@ main {
 
 @media (min-width: 1024px) {
   main {
-    min-height: calc(100vh - 86px);
-    padding: 32px;
+    justify-content: center;
+    height: calc(100vh - 70px);
   }
 }
 
