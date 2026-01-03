@@ -302,13 +302,13 @@ Always use **object-style** syntax for conditional classNames:
 
 ```typescript
 // ✅ Correct
-className={clsx(styles.button, {
+className={cn(styles.button, {
   [styles.active]: isActive,
   [styles.disabled]: isDisabled,
 })}
 
 // ❌ Incorrect
-className={clsx(styles.button, isActive && styles.active)}
+className={cn(styles.button, isActive && styles.active)}
 ```
 
 ### SEO Configuration
