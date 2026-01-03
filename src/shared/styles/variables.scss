@@ -1,0 +1,35 @@
+// Typography
+$font-poppins: var(--font-poppins);
+$font-kaisei: var(--font-kaisei);
+
+// Colors
+$color-primary: #e28f11;
+$color-text: #16171b;
+$color-text-accent: #de3a6b;
+$color-text-white: #ffffff;
+$color-text-secondary: #8f91a1;
+$color-background: #ffffff;
+$color-border: #e5e7eb;
+$color-disabled: #9ca3af;
+$color-selected: #dbeafe;
+
+// Spacing
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+
+// Border
+$border-radius: 8px;
+
+// Transitions
+$transition: 300ms ease-in-out;
+
+// Layout
+$header-height-mobile: 64px;
+$header-height-desktop: 86px;
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-lg: 1024px;

@@ -1,0 +1,5 @@
+// Centralized import for all shared styles
+// Usage in SCSS modules: @import '@/shared/styles';
+
+@forward 'variables';
+@forward 'mixins';

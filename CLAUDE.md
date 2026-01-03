@@ -282,6 +282,8 @@ The locale metadata in `src/shared/config/i18n/config.ts` includes `htmlLang` an
 
 - Use SCSS Modules (`*.module.scss`) co-located with components
 - Use nesting where appropriate
+- **CRITICAL: ALL sizes must be in pixels (px), NOT rem or em** - This is a project-wide convention for consistency
+- Import shared styles: `@import '@/shared/styles';` to access variables and mixins
 - **CSS property order** follows 9elements CSS Rule Order:
   1. Generated content: `content`
   2. Position & Layout: `position`, `z-index`, `top/right/bottom/left`, `inset`, flexbox/grid properties, `float`, `clear`
@@ -293,8 +295,9 @@ The locale metadata in `src/shared/config/i18n/config.ts` includes `htmlLang` an
   8. Typography: `font-size`, `line-height`, `font-family`, `font-weight`, `font-style`, `text-*`, `letter-spacing`, `word-spacing`, `color`
 - **Transitions:** Use targeted transitions instead of `transition: all`:
   - Define only those properties that actually change in `:hover/:focus/:active/:disabled`
-  - Format: `transition-property: transform, background-color, opacity; transition-duration: var(--transition);`
-  - Or shorthand: `transition: transform 150ms ease, background-color 150ms ease;`
+  - Use the `smoothTransition()` mixin: `@include smoothTransition(transform, background-color, opacity);`
+  - Or manual: `transition-property: transform, background-color; transition-duration: $transition;`
+  - Or shorthand: `transition: transform 300ms ease, background-color 300ms ease;`
 
 ### clsx Usage
 

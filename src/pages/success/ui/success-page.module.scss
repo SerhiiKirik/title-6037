@@ -1,11 +1,13 @@
+@import '@/shared/styles';
+
 .successCard {
   animation: slideUp 0.4s ease-out;
   max-width: 500px;
-  border-radius: var(--border-radius);
+  border-radius: $border-radius;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   width: 100%;
-  padding: var(--spacing-xl);
-  background-color: var(--color-background);
+  padding: $spacing-xl;
+  background-color: $color-background;
   text-align: center;
 }
 
@@ -21,11 +23,11 @@
 }
 
 .iconWrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  @include flexCenter;
+
   animation: scaleIn 0.5s ease-out 0.2s both;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: $spacing-lg;
+  margin-inline: auto;
   border-radius: 50%;
   width: 80px;
   height: 80px;
@@ -48,29 +50,29 @@
 }
 
 .title {
-  margin-bottom: var(--spacing-sm);
-  font-size: 2rem;
+  margin-bottom: $spacing-sm;
+  font-size: 32px;
   font-weight: 800;
-  color: var(--color-text);
+  color: $color-text;
 
-  @media (min-width: 640px) {
-    font-size: 2.5rem;
+  @include onTablet {
+    font-size: 40px;
   }
 }
 
 .subtitle {
-  margin-bottom: var(--spacing-xl);
-  font-size: 1.125rem;
-  color: var(--color-text-secondary);
+  margin-bottom: $spacing-xl;
+  font-size: 18px;
+  color: $color-text-secondary;
 }
 
 .bookingDetails {
   animation: fadeIn 0.5s ease-out 0.3s both;
-  margin-bottom: var(--spacing-xl);
-  border: 2px solid var(--color-primary);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-lg);
-  background-color: var(--color-selected);
+  margin-bottom: $spacing-xl;
+  border: 2px solid $color-primary;
+  border-radius: $border-radius;
+  padding: $spacing-lg;
+  background-color: $color-selected;
 }
 
 @keyframes fadeIn {
@@ -83,106 +85,108 @@
 }
 
 .detailRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: var(--spacing-sm) 0;
+  @include flexBetween;
+
+  padding: $spacing-sm 0;
 
   &:not(:last-child) {
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: 1px solid $color-border;
   }
 }
 
 .detailLabel {
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-secondary);
+  letter-spacing: 1px;
+  color: $color-text-secondary;
 }
 
 .detailValue {
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: $color-primary;
 
-  @media (min-width: 640px) {
-    font-size: 1.125rem;
+  @include onTablet {
+    font-size: 18px;
   }
 }
 
 .detailsTitle {
-  margin-bottom: var(--spacing-md);
-  font-size: 0.875rem;
+  margin-bottom: $spacing-md;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text);
+  letter-spacing: 1px;
+  color: $color-text;
 }
 
 .noDetails {
-  font-size: 0.875rem;
+  font-size: 14px;
   font-style: italic;
-  color: var(--color-text-secondary);
+  color: $color-text-secondary;
 }
 
 .emailSection {
   animation: fadeIn 0.5s ease-out 0.4s both;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: $spacing-xl;
 }
 
 .emailPrompt {
-  margin-bottom: var(--spacing-md);
-  font-size: 1rem;
+  margin-bottom: $spacing-md;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--color-text);
+  color: $color-text;
 }
 
 .emailForm {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: $spacing-md;
 }
 
 .emailInput {
-  transition-property: box-shadow, border-color, opacity, background-color;
-  transition-duration: var(--transition);
-  border: 2px solid var(--color-border);
-  border-radius: var(--border-radius);
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
+  @include smoothTransition(
+    box-shadow,
+    border-color,
+    opacity,
+    background-color
+  );
+
+  border: 2px solid $color-border;
+  border-radius: $border-radius;
+  padding: 12px 16px;
+  font-size: 16px;
   font-family: inherit;
   outline: none;
 
   &:focus {
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    border-color: var(--color-primary);
+    border-color: $color-primary;
   }
 
-  &:disabled {
-    opacity: 0.6;
+  @include disabled {
     background-color: #f9fafb;
-    cursor: not-allowed;
   }
 
   &::placeholder {
     opacity: 0.6;
-    color: var(--color-text-secondary);
+    color: $color-text-secondary;
   }
 }
 
 .emailSuccess {
   animation: fadeIn 0.3s ease-out;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: $spacing-xl;
   border: 2px solid #10b981;
-  border-radius: var(--border-radius);
-  padding: var(--spacing-lg);
+  border-radius: $border-radius;
+  padding: $spacing-lg;
   background-color: #d1fae5;
 }
 
 .emailSuccessText {
   margin: 0;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 600;
   color: #065f46;
 
@@ -192,13 +196,13 @@
 }
 
 .backButton {
+  @include smoothTransition(transform, box-shadow, background-color);
+
   display: inline-block;
-  transition-property: transform, box-shadow, background-color;
-  transition-duration: var(--transition);
-  border-radius: var(--border-radius);
-  padding: 0.75rem 2rem;
-  background-color: var(--color-primary);
-  font-size: 1rem;
+  border-radius: $border-radius;
+  padding: 12px 32px;
+  background-color: $color-primary;
+  font-size: 16px;
   font-weight: 600;
   text-decoration: none;
   color: white;
@@ -206,7 +210,7 @@
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
-    background-color: var(--color-primary-hover);
+    background-color: $color-text-accent;
   }
 
   &:active {

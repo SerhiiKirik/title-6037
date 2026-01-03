@@ -1,49 +1,51 @@
+@import '@/shared/styles';
+
 .header {
-  position: sticky;
-  z-index: 100;
-  top: 0;
-  width: 100%;
-  border-bottom: 2px solid var(--color-border);
-  background-color: var(--color-background);
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
+  display: none;
+
+  @include onDesktop() {
+    display: block;
+
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    width: 100%;
+    border-bottom: 2px solid #ffffff66;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(68px);
+  }
 }
 
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-md) var(--spacing-lg);
+  @include onDesktop() {
+    @include flexBetween;
 
-  @media (min-width: 640px) {
-    padding: var(--spacing-lg) var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $spacing-md $spacing-lg;
   }
 }
 
 .brand {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
+  @include onDesktop() {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+  }
 }
 
 .logo {
-  width: auto;
-  height: 32px;
-
-  @media (min-width: 640px) {
-    height: 40px;
+  @include onDesktop() {
+    width: auto;
+    height: 32px;
   }
 }
 
 .title {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-primary);
-
-  @media (min-width: 640px) {
-    font-size: 1.5rem;
+  @include onDesktop() {
+    font-family: var(--font-poppins);
+    font-size: 22px;
+    font-weight: 600;
+    color: $color-text-white;
   }
 }

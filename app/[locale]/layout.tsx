@@ -46,7 +46,7 @@ const LocaleLayout = async ({ children, params }: Props) => {
     <html lang={localeData?.htmlLang || 'en'}>
       <body className={`${poppins.variable} ${kaiseiTokumin.variable}`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Header title="Booking Session" />
+          <Header title="6037 Venture Partnership" />
           <main>{children}</main>
         </NextIntlClientProvider>
       </body>

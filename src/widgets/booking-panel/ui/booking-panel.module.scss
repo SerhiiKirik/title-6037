@@ -1,63 +1,65 @@
+@import '@/shared/styles';
+
 .panel {
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;
-  padding: var(--spacing-md);
-  background-color: var(--color-background);
+  padding: $spacing-md;
+  background-color: $color-background;
 
-  @media (min-width: 640px) {
-    padding: var(--spacing-lg);
+  @include onTablet {
+    padding: $spacing-lg;
   }
 
-  @media (min-width: 1024px) {
-    padding: var(--spacing-xl);
+  @include onDesktop {
+    padding: $spacing-xl;
   }
 }
 
 .header {
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: $spacing-xl;
   text-align: center;
 }
 
 .title {
-  margin-bottom: var(--spacing-sm);
-  font-size: 1.875rem;
+  margin-bottom: $spacing-sm;
+  font-size: 30px;
   font-weight: 800;
-  color: var(--color-text);
+  color: $color-text;
 
-  @media (min-width: 640px) {
-    font-size: 2.25rem;
+  @include onTablet {
+    font-size: 36px;
   }
 
-  @media (min-width: 1024px) {
-    font-size: 3rem;
+  @include onDesktop {
+    font-size: 48px;
   }
 }
 
 .subtitle {
-  font-size: 1rem;
-  color: var(--color-text-secondary);
+  font-size: 16px;
+  color: $color-text-secondary;
 
-  @media (min-width: 640px) {
-    font-size: 1.125rem;
+  @include onTablet {
+    font-size: 18px;
   }
 }
 
 .content {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: $spacing-xl;
 }
 
 .footer {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-xl);
-  border-top: 2px solid var(--color-border);
-  padding-top: var(--spacing-lg);
+  gap: $spacing-lg;
+  margin-top: $spacing-xl;
+  border-top: 2px solid $color-border;
+  padding-top: $spacing-lg;
 
-  @media (min-width: 640px) {
+  @include onTablet {
     max-width: 400px;
     margin-right: auto;
     margin-left: auto;
@@ -67,11 +69,10 @@
 .selectedSummary {
   animation: fadeIn 0.3s ease-in-out;
   margin: 0;
-  border: 2px solid var(--color-primary);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-lg);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background: var(--color-selected);
+  border: 2px solid $color-primary;
+  border-radius: $border-radius;
+  padding: $spacing-lg;
+  background-color: $color-selected;
   text-align: center;
 }
 
@@ -87,31 +88,31 @@
 }
 
 .summaryLabel {
-  margin-bottom: var(--spacing-sm);
-  font-size: 0.875rem;
+  margin-bottom: $spacing-sm;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-secondary);
+  letter-spacing: 1px;
+  color: $color-text-secondary;
 }
 
 .summaryDate {
-  margin-bottom: var(--spacing-xs);
-  font-size: 1.125rem;
+  margin-bottom: $spacing-xs;
+  font-size: 18px;
   font-weight: 700;
-  color: var(--color-primary);
+  color: $color-primary;
 
-  @media (min-width: 640px) {
-    font-size: 1.25rem;
+  @include onTablet {
+    font-size: 20px;
   }
 }
 
 .summaryTime {
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 600;
-  color: var(--color-text);
+  color: $color-text;
 
-  @media (min-width: 640px) {
-    font-size: 1.125rem;
+  @include onTablet {
+    font-size: 18px;
   }
 }
