@@ -9,32 +9,24 @@
 }
 
 .navButton {
-  @include smoothTransition(transform, border-color, background-color, color, opacity);
+  @include smoothTransition(transform, color, opacity);
   @include flexCenter;
 
   z-index: 2;
   flex-shrink: 0;
-  border: 2px solid $color-border;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  background-color: $color-background;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
   color: $color-text;
 
   &:hover {
     transform: scale(1.1);
-    border-color: $color-primary;
-    background-color: $color-primary;
-    color: white;
   }
 
   @include disabled {
     transform: none;
 
     &:hover {
-      border-color: $color-border;
-      background-color: $color-background;
       color: $color-text;
     }
   }

@@ -74,12 +74,12 @@ export const BookingPanel: FC<Props> = () => {
 
   return (
     <div className={styles.panel}>
-      <div className={styles.header}>
-        <h1 className={styles.title}>{t('title')}</h1>
-        <p className={styles.subtitle}>{t('subtitle')}</p>
-      </div>
-
       <div className={styles.content}>
+        <div className={styles.header}>
+          <h1 className={styles.title}>{t('title')}</h1>
+          <p className={styles.subtitle}>{t('subtitle')}</p>
+        </div>
+
         <DateSelector dates={formattedDates} onDateSelect={handleDateSelect} />
 
         <TimeSelector
@@ -88,26 +88,21 @@ export const BookingPanel: FC<Props> = () => {
           onTimeSelect={handleTimeSelect}
           isDisabled={!selectedDate}
         />
+      </div>
 
-        <div className={styles.footer}>
-          {formattedSelection && (
-            <div className={styles.selectedSummary}>
-              <p className={styles.summaryLabel}>{t('yourSelection')}</p>
-              <p className={styles.summaryDate}>{formattedSelection.date}</p>
-              <p className={styles.summaryTime}>
-                {t('at')} {formattedSelection.time}
-              </p>
-            </div>
-          )}
+      <div className={styles.footer}>
+        {formattedSelection && (
+          <div className={styles.selectedSummary}>
+            <p className={styles.summaryLabel}>{t('yourSelection')}</p>
+            <span className={styles.summaryDate}>
+              {formattedSelection.date} {t('at')} {formattedSelection.time}
+            </span>
+          </div>
+        )}
 
-          <Button
-            onClick={handleConfirm}
-            disabled={!isConfirmEnabled}
-            fullWidth
-          >
-            {t('confirmButton')}
-          </Button>
-        </div>
+        <Button onClick={handleConfirm} disabled={!isConfirmEnabled} fullWidth>
+          {t('confirmButton')}
+        </Button>
       </div>
     </div>
   );
