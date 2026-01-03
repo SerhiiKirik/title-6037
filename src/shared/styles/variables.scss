@@ -9,7 +9,8 @@ $color-text-accent: #de3a6b;
 $color-text-white: #ffffff;
 $color-text-secondary: #8f91a1;
 $color-background: #ffffff;
-$color-border: #e5e7eb;
+$color-border: #e8ebf4;
+$color-active: #f7f7fc;
 $color-disabled: #9ca3af;
 $color-selected: #dbeafe;
 
@@ -24,7 +25,7 @@ $spacing-xl: 32px;
 $border-radius: 8px;
 
 // Transitions
-$transition: 300ms ease-in-out;
+$transition: 300ms;
 
 // Layout
 $header-height-mobile: 64px;

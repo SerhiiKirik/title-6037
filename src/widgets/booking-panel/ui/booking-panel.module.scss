@@ -1,47 +1,40 @@
 @import '@/shared/styles';
 
 .panel {
-  max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
+  height: 65vh;
   padding: $spacing-md;
   background-color: $color-background;
 
-  @include onTablet {
-    padding: $spacing-lg;
-  }
+  border-radius: 24px 24px 0 0;
 
   @include onDesktop {
+    max-width: 568px;
     padding: $spacing-xl;
+
+    border-radius: 24px;
   }
 }
 
 .header {
   margin-bottom: $spacing-xl;
-  text-align: center;
 }
 
 .title {
   margin-bottom: $spacing-sm;
-  font-size: 30px;
-  font-weight: 800;
+
+  font-family: var(--font-kaisei);
+  font-size: 28px;
+  font-weight: 700;
   color: $color-text;
-
-  @include onTablet {
-    font-size: 36px;
-  }
-
-  @include onDesktop {
-    font-size: 48px;
-  }
 }
 
 .subtitle {
   font-size: 16px;
   color: $color-text-secondary;
 
-  @include onTablet {
-    font-size: 18px;
+  @include onDesktop {
+    font-size: 14px;
   }
 }
 

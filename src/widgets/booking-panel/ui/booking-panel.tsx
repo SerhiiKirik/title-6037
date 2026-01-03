@@ -82,13 +82,12 @@ export const BookingPanel: FC<Props> = () => {
       <div className={styles.content}>
         <DateSelector dates={formattedDates} onDateSelect={handleDateSelect} />
 
-        {selectedDate && (
-          <TimeSelector
-            timeSlots={availableTimeSlots}
-            selectedTime={selectedTime}
-            onTimeSelect={handleTimeSelect}
-          />
-        )}
+        <TimeSelector
+          timeSlots={availableTimeSlots}
+          selectedTime={selectedTime}
+          onTimeSelect={handleTimeSelect}
+          isDisabled={!selectedDate}
+        />
 
         <div className={styles.footer}>
           {formattedSelection && (
@@ -100,6 +99,7 @@ export const BookingPanel: FC<Props> = () => {
               </p>
             </div>
           )}
+
           <Button
             onClick={handleConfirm}
             disabled={!isConfirmEnabled}

@@ -12,7 +12,6 @@ interface Props {
 
 export const DateSelector: FC<Props> = ({ dates, onDateSelect }) => (
   <div className={styles.container}>
-    <h2 className={styles.title}>Select Date</h2>
     <DateSlider dates={dates} onDateSelect={onDateSelect} />
   </div>
 );
