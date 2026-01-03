@@ -80,18 +80,16 @@ h6 {
 
 /* Main content area */
 main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
   background: #e28f11;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 @media (min-width: 1024px) {
   main {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    height: calc(100vh - 70px);
+    min-height: calc(100vh - 70px);
   }
 }
 

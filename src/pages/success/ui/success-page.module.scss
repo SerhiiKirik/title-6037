@@ -1,5 +1,16 @@
 @import '@/shared/styles';
 
+.wrapper {
+  @include flexCenter;
+
+  min-height: 100vh;
+  width: 100%;
+
+  onDesktop {
+    min-height: calc(100vh - 70px);
+  }
+}
+
 .successCard {
   animation: slideUp 0.4s ease-out;
   max-width: 500px;
@@ -69,10 +80,9 @@
 .bookingDetails {
   animation: fadeIn 0.5s ease-out 0.3s both;
   margin-bottom: $spacing-xl;
-  border: 2px solid $color-primary;
+  border: 1px solid $color-text;
   border-radius: $border-radius;
   padding: $spacing-lg;
-  background-color: $color-selected;
 }
 
 @keyframes fadeIn {
@@ -104,8 +114,8 @@
 
 .detailValue {
   font-size: 16px;
-  font-weight: 700;
-  color: $color-primary;
+  font-weight: 600;
+  color: $color-text;
 
   @include onTablet {
     font-size: 18px;
@@ -115,7 +125,7 @@
 .detailsTitle {
   margin-bottom: $spacing-md;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: $color-text;
@@ -153,7 +163,7 @@
     background-color
   );
 
-  border: 2px solid $color-border;
+  border: 1px solid $color-border;
   border-radius: $border-radius;
   padding: 12px 16px;
   font-size: 16px;
@@ -161,8 +171,7 @@
   outline: none;
 
   &:focus {
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    border-color: $color-primary;
+    border-color: $color-text-accent;
   }
 
   @include disabled {
@@ -181,7 +190,6 @@
   border: 2px solid #10b981;
   border-radius: $border-radius;
   padding: $spacing-lg;
-  background-color: #d1fae5;
 }
 
 .emailSuccessText {

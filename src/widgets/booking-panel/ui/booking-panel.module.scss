@@ -5,7 +5,9 @@
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  min-height: 65vh;
+  flex: 1;
+  gap: 32px;
+
   padding: $spacing-md;
   background-color: $color-background;
 
@@ -13,7 +15,7 @@
 
   @include onDesktop {
     max-width: 568px;
-    min-height: auto;
+    flex: none;
     height: 620px;
     padding: $spacing-xl;
 
