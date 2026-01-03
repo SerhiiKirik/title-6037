@@ -1,10 +1,10 @@
 {
   "booking": {
-    "title": "Book Your Session",
-    "subtitle": "Select a date and time that works best for you",
+    "title": "Book a Session",
+    "subtitle": "Choose a date and time that is convenient for you to e-meet your stylist",
     "yourSelection": "Your selection:",
     "at": "at",
-    "confirmButton": "Confirm Booking"
+    "confirmButton": "Confirm"
   },
   "success": {
     "title": "Booking Confirmed!",

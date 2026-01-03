@@ -3,7 +3,7 @@
 import { type FC, type ChangeEvent, useTransition } from 'react';
 import { useLocale } from 'next-intl';
 import { usePathname as useNextPathname } from 'next/navigation';
-import clsx from 'clsx';
+import cn from 'clsx';
 import {
   useRouter,
   locales,
@@ -41,12 +41,12 @@ export const LanguageSwitcher: FC<Props> = ({ className }) => {
   };
 
   return (
-    <div className={clsx(styles.switcher, className)}>
+    <div className={cn(styles.switcher, className)}>
       <select
         value={currentLocale}
         onChange={handleLocaleChange}
         disabled={isPending}
-        className={clsx(styles.select, {
+        className={cn(styles.select, {
           [styles.pending]: isPending,
         })}
         aria-label="Select language"

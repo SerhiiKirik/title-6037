@@ -29,7 +29,7 @@ export const DateSlider: FC<Props> = ({ dates, onDateSelect }) => {
     <Slider scrollAmount={280}>
       {Object.entries(datesByMonth).map(([month, monthDates]) => (
         <div key={month} className={styles.monthGroup}>
-          <div className={styles.monthLabel}>{month}</div>
+          {/* <div className={styles.monthLabel}>{month}</div> */}
           <div className={styles.datesRow}>
             {monthDates.map((dateInfo) => (
               <button

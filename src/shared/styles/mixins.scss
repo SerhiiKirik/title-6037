@@ -1,0 +1,50 @@
+@use 'variables' as *;
+
+// Responsive breakpoints (mobile-first)
+@mixin onTablet {
+  @media (min-width: $breakpoint-sm) {
+    @content;
+  }
+}
+
+@mixin onDesktop {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+// Smooth transitions
+@mixin smoothTransition($properties...) {
+  transition-property: $properties;
+  transition-duration: $transition;
+}
+
+// Flexbox helpers
+@mixin flexCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flexBetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Focus visible outline
+@mixin focusOutline {
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}
+
+// Disabled state
+@mixin disabled {
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    @content;
+  }
+}

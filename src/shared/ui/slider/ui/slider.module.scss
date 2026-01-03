@@ -1,44 +1,33 @@
+@import '@/shared/styles';
+
 .sliderWrapper {
+  @include flexCenter;
+
   position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+  gap: $spacing-sm;
   width: 100%;
 }
 
 .navButton {
+  @include smoothTransition(transform, color, opacity);
+  @include flexCenter;
+
   z-index: 2;
-  display: flex;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
-  transition-property:
-    transform, border-color, background-color, color, opacity;
-  transition-duration: var(--transition);
-  border: 2px solid var(--color-border);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  background-color: var(--color-background);
+  width: 24px;
+  height: 24px;
   cursor: pointer;
-  color: var(--color-text);
+  color: $color-text;
 
   &:hover {
     transform: scale(1.1);
-    border-color: var(--color-primary);
-    background-color: var(--color-primary);
-    color: white;
   }
 
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  @include disabled {
     transform: none;
 
     &:hover {
-      border-color: var(--color-border);
-      background-color: var(--color-background);
-      color: var(--color-text);
+      color: $color-text;
     }
   }
 }
@@ -50,13 +39,13 @@
 .sliderContainer {
   display: flex;
   flex: 1;
-  gap: var(--spacing-sm);
+  gap: $spacing-sm;
   overflow-x: auto;
   overflow-y: hidden;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: var(--spacing-sm) 0;
+  padding: $spacing-sm 0;
 
   &::-webkit-scrollbar {
     display: none;

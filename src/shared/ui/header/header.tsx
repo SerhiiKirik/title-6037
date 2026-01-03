@@ -17,6 +17,7 @@ export const Header: FC<Props> = ({ logo, title = 'Booking App' }) => (
         )}
         <h1 className={styles.title}>{title}</h1>
       </div>
+
       <LanguageSwitcher />
     </div>
   </header>

@@ -8,20 +8,22 @@ import styles from './time-selector.module.scss';
 interface Props {
   timeSlots: TimeSlot[];
   selectedTime: number | null;
+  isDisabled?: boolean;
   onTimeSelect: (minutes: number) => void;
 }
 
 export const TimeSelector: FC<Props> = ({
   timeSlots,
   selectedTime,
+  isDisabled,
   onTimeSelect,
 }) => (
   <div className={styles.container}>
-    <h2 className={styles.title}>Select Time</h2>
     <TimeSlider
       timeSlots={timeSlots}
       selectedTime={selectedTime}
       onTimeSelect={onTimeSelect}
+      isDisabled={isDisabled}
     />
   </div>
 );

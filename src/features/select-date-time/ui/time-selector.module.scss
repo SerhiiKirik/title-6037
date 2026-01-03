@@ -1,63 +1,59 @@
+@import '@/shared/styles';
+
 .container {
   width: 100%;
-  margin-top: var(--spacing-xl);
-}
-
-.title {
-  margin-bottom: var(--spacing-lg);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-text);
 }
 
 .emptyMessage {
-  border-radius: var(--border-radius);
-  padding: var(--spacing-lg);
-  background-color: var(--color-selected);
+  border-radius: $border-radius;
+  padding: $spacing-lg;
+  background-color: $color-selected;
   text-align: center;
-  color: var(--color-text-secondary);
+  color: $color-text-secondary;
 }
 
 .timeGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
-  gap: var(--spacing-sm);
+  gap: $spacing-sm;
   overflow-y: auto;
   max-height: 300px;
-  padding: var(--spacing-xs);
+  padding: $spacing-xs;
 
-  @media (min-width: 640px) {
+  @include onTablet {
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
   }
 
-  @media (min-width: 1024px) {
+  @include onDesktop {
     grid-template-columns: repeat(6, 1fr);
   }
 }
 
 .timeSlot {
-  transition-property:
-    transform, box-shadow, border-color, background-color, font-weight, color,
-    opacity;
-  transition-duration: var(--transition);
-  border: 2px solid var(--color-border);
-  border-radius: var(--border-radius);
-  padding: var(--spacing-md);
-  background-color: var(--color-background);
+  @include smoothTransition(
+    transform,
+    box-shadow,
+    border-color,
+    background-color,
+    font-weight,
+    color,
+    opacity
+  );
+  @include focusOutline;
+
+  border: 2px solid $color-border;
+  border-radius: $border-radius;
+  padding: $spacing-md;
+  background-color: $color-background;
   cursor: pointer;
-  font-size: 0.875rem;
+  font-size: 14px;
   font-weight: 500;
 
   &:not(.disabled):hover {
     transform: translateY(-2px);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border-color: var(--color-primary);
-    background-color: var(--color-selected);
-  }
-
-  &:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    border-color: $color-primary;
+    background-color: $color-selected;
   }
 
   &:not(.disabled):active {
@@ -65,27 +61,27 @@
   }
 
   &.selected {
-    border-color: var(--color-primary);
-    background-color: var(--color-primary);
+    border-color: $color-primary;
+    background-color: $color-primary;
     font-weight: 600;
     color: white;
 
     &:hover {
-      background-color: var(--color-primary-hover);
+      background-color: $color-text-accent;
     }
   }
 
   &.disabled {
     opacity: 0.5;
-    border-color: var(--color-border);
+    border-color: $color-border;
     background-color: #f9fafb;
     cursor: not-allowed;
-    color: var(--color-disabled);
+    color: $color-disabled;
 
     &:hover {
       transform: none;
       box-shadow: none;
-      border-color: var(--color-border);
+      border-color: $color-border;
       background-color: #f9fafb;
     }
   }

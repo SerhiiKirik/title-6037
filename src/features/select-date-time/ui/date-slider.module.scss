@@ -1,47 +1,51 @@
+@import '@/shared/styles';
+
 .monthGroup {
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  gap: var(--spacing-sm);
+  gap: $spacing-sm;
 }
 
 .monthLabel {
-  padding-left: var(--spacing-xs);
-  font-size: 0.875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-text-secondary);
+  font-size: 14px;
+  color: $color-text-secondary;
 }
 
 .datesRow {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: $spacing-sm;
 }
 
 .dateCard {
+  @include smoothTransition(
+    transform,
+    box-shadow,
+    border-color,
+    background-color,
+    color
+  );
+
   position: relative;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-xs);
-  transition-property:
-    transform, box-shadow, border-color, background-color, color;
-  transition-duration: var(--transition);
-  border: 2px solid var(--color-border);
-  border-radius: var(--border-radius);
-  width: 70px;
-  height: 80px;
-  padding: var(--spacing-xs);
-  background-color: var(--color-background);
+  border: 1px solid $color-border;
+  border-radius: $border-radius;
+  width: 64px;
+  height: 64px;
+  padding: $spacing-sm;
+  background-color: $color-background;
   cursor: pointer;
+
+  font-size: 16px;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-color: var(--color-primary);
+    border-color: $color-text-accent;
   }
 
   &:active {
@@ -49,69 +53,34 @@
   }
 
   &.selected {
-    border-color: var(--color-primary);
-    background-color: var(--color-primary);
-    color: white;
-
-    .dayName {
-      opacity: 1;
-      color: white;
-    }
-
-    .dayNumber {
-      color: white;
-    }
+    border-color: $color-active;
+    background-color: $color-active;
+    color: $color-text-accent;
+    font-weight: 500;
 
     .todayBadge {
       background-color: white;
-      color: var(--color-primary);
-    }
-
-    &.today {
-      background-color: var(--color-primary);
+      color: $color-text-accent;
     }
   }
 
   &.today {
-    border-color: var(--color-primary);
+    border-color: $color-active;
     border-width: 2px;
-  }
-
-  @media (min-width: 768px) {
-    width: 80px;
-    height: 90px;
-  }
-}
-
-.dayName {
-  opacity: 0.8;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.dayNumber {
-  font-size: 1.5rem;
-  line-height: 1;
-  font-weight: 800;
-
-  @media (min-width: 768px) {
-    font-size: 1.75rem;
   }
 }
 
 .todayBadge {
   position: absolute;
-  bottom: 4px;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 4px;
   padding: 2px 6px;
-  background-color: var(--color-selected);
-  font-size: 0.625rem;
+  background-color: $color-selected;
+  font-size: 8px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-primary);
+  letter-spacing: 1px;
+  color: $color-text;
 }
