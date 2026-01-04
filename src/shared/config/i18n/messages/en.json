@@ -4,7 +4,8 @@
     "subtitle": "Choose a date and time that is convenient for you to e-meet your stylist",
     "yourSelection": "Your selection:",
     "at": "at",
-    "confirmButton": "Confirm"
+    "confirmButton": "Confirm",
+    "today": "Today"
   },
   "success": {
     "title": "Booking Confirmed!",
