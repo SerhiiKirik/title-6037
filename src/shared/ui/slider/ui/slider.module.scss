@@ -1,9 +1,9 @@
 @import '@/shared/styles';
 
 .sliderWrapper {
-  @include flexCenter;
-
+  display: flex;
   position: relative;
+  align-items: center;
   gap: $spacing-sm;
   width: 100%;
 }
@@ -50,6 +50,7 @@
   flex-shrink: 0;
   width: 24px;
   height: 24px;
+  margin-top: var(--slider-offset, 0);
   cursor: pointer;
   color: $color-text;
 
