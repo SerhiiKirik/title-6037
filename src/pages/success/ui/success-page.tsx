@@ -37,7 +37,7 @@ export const SuccessPage: FC<Props> = () => {
 
       setBookingInfo({
         date: format(date, 'EEEE, d MMMM yyyy', { locale: dateFnsLocale }),
-        time: format(date, 'H:mm', { locale: dateFnsLocale }),
+        time: format(date, 'h:mm a', { locale: enUS }),
       });
     }
   }, [searchParams, dateFnsLocale]);

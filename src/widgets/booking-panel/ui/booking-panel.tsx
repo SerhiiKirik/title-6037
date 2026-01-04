@@ -55,7 +55,7 @@ export const BookingPanel: FC = () => {
       date: format(selectedDate, 'EEEE, d MMMM yyyy', {
         locale: dateFnsLocale,
       }),
-      time: format(dateTime, 'H:mm', { locale: dateFnsLocale }),
+      time: format(dateTime, 'h:mm a', { locale: enUS }),
     };
   }, [selectedDate, selectedTime, dateFnsLocale]);
 
