@@ -2,24 +2,85 @@
 
 A responsive booking session page built with Next.js 14, TypeScript, and Feature-Sliced Design architecture.
 
+## 🚀 Live Demo
+
+**[View Demo on Vercel](https://title-6037.vercel.app/en)**
+
 ## Features
 
+### Core Features (Task Requirements)
+
 - **Date Selection**: Browse and select dates from today up to 6 weeks ahead
-- **Time Slots**: Choose from 15-minute interval time slots in 12-hour format
+- **Time Slots**: Choose from 15-minute interval time slots in 12-hour format (AM/PM)
 - **Past Time Prevention**: Automatically disables time slots that have already passed for the current day
+- **Active Confirm Button**: Enabled only when both date and time are selected
+- **Timestamp Output**: Outputs Unix timestamp to console on confirmation
 - **Responsive Design**: Fully adaptive layout from iPhone SE (320px) to 4K displays
-- **Accessibility**: Full keyboard navigation support with ARIA labels
 - **Type-Safe**: Built with TypeScript for robust type checking
+
+### Bonus Features (Beyond Requirements)
+
+- **🌍 Internationalization (i18n)**: Multi-language support (English/Ukrainian) with next-intl
+  - Automatic locale detection and routing
+  - Localized date formats (day names, months)
+  - Language switcher in header with preserved URL params
+- **✅ Success Page**: Confirmation page with booking details
+  - Displays selected date and time
+  - Email confirmation form (mock)
+  - Automatic navigation with timestamp
+- **🏗️ Feature-Sliced Design**: Professional scalable architecture
+  - Clear separation of concerns
+  - Layer-based structure (app → pages → widgets → features → entities → shared)
+  - Integrated with Next.js App Router
+- **🎨 Advanced UI/UX**:
+  - Smooth animations and transitions
+  - Loading states with Suspense boundaries
+  - Skeleton placeholders
+  - Hover effects and visual feedback
+- **🔧 Development Experience**:
+  - Pre-commit hooks (Husky + lint-staged)
+  - Automatic code formatting (Prettier)
+  - Type checking and linting on commit
+  - Comprehensive documentation (CLAUDE.md, FSD-CONVENTIONS.md, AGENTS.md)
+- **📦 SEO Optimization**:
+  - Meta tags configuration
+  - OpenGraph support
+  - JSON-LD structured data
+  - Locale-aware metadata
+- **♿ Accessibility**:
+  - Full keyboard navigation support
+  - ARIA labels and roles
+  - Screen reader friendly
+- **⚡ Performance**:
+  - Static site generation (SSG)
+  - Optimized bundle size
+  - Code splitting
+  - Tree-shakable imports
 
 ## Tech Stack
 
+### Core
 - **Next.js 14** - React framework with App Router
 - **TypeScript** - Type safety and improved DX
+- **React 18** - UI library with latest features
+
+### State & Data
 - **Zustand** - Lightweight state management
 - **date-fns** - Modern date/time utility library
-- **CSS Modules** - Scoped styling
-- **ESLint (Airbnb)** - Code quality and consistency
-- **Prettier** - Automatic code formatting
+
+### Styling
+- **SCSS Modules** - Scoped styling with Sass
+- **clsx** - Conditional className utility
+- **modern-normalize** - CSS normalization
+
+### Internationalization
+- **next-intl** - i18n with App Router support
+
+### Code Quality
+- **ESLint (Airbnb)** - Code linting with TypeScript support
+- **Prettier** - Code formatting
+- **Husky** - Git hooks
+- **lint-staged** - Pre-commit linting
 
 ## Architecture
 
@@ -28,17 +89,34 @@ This project follows **Feature-Sliced Design (FSD)** methodology integrated with
 ### Structure
 
 ```
-├── app/                 # Next.js App Router (root level)
-├── pages/              # Empty (prevents Next.js from scanning src/pages/)
-└── src/
-    ├── pages/          # FSD pages layer - page compositions
-    ├── widgets/        # Large UI blocks (booking-panel)
-    ├── features/       # User actions (select-date-time)
-    ├── entities/       # Domain entities (booking with model & lib)
-    └── shared/         # Reusable components and utilities
+booking-session-page/
+├── app/                    # Next.js App Router
+│   └── [locale]/          # Locale routing (en, uk)
+│
+├── src/                   # FSD architecture layers
+│   ├── pages/            # Page compositions (booking, success)
+│   ├── widgets/          # Large UI blocks (booking-panel, hero)
+│   ├── features/         # User features (language-switcher, select-date-time)
+│   ├── entities/         # Domain logic (booking, seo)
+│   └── shared/           # Reusable code
+│       ├── config/       # App configuration (i18n)
+│       ├── ui/           # UI components (button, header, icons)
+│       ├── lib/          # Utilities & hooks
+│       ├── styles/       # SCSS variables & mixins
+│       └── types/        # TypeScript types
+│
+├── public/               # Static assets
+├── i18n.ts              # next-intl configuration
+├── middleware.ts        # Locale routing middleware
+└── *.md                 # Documentation
 ```
 
-The App Router (`app/`) imports and re-exports pages from the FSD structure (`src/pages/`), following [official FSD guidelines for Next.js](https://feature-sliced.github.io/documentation/docs/guides/tech/with-nextjs).
+**Layer Dependencies:**
+```
+app → pages → widgets → features → entities → shared
+```
+
+Each layer can only import from layers to its right. See [FSD-CONVENTIONS.md](./FSD-CONVENTIONS.md) for details.
 
 ## Library Choices
 

@@ -55,7 +55,7 @@ export const BookingPanel: FC = () => {
       date: format(selectedDate, 'EEEE, d MMMM yyyy', {
         locale: dateFnsLocale,
       }),
-      time: format(dateTime, 'H:mm', { locale: dateFnsLocale }),
+      time: format(dateTime, 'h:mm a', { locale: enUS }),
     };
   }, [selectedDate, selectedTime, dateFnsLocale]);
 
@@ -72,9 +72,7 @@ export const BookingPanel: FC = () => {
     const timestamp = confirmBooking();
 
     if (timestamp) {
-      // Get current locale from pathname
-      const currentLocale = window.location.pathname.split('/')[1];
-      router.push(`/${currentLocale}/success?timestamp=${timestamp}`);
+      router.push(`/${locale}/success?timestamp=${timestamp}`);
     }
   };
 

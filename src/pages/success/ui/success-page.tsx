@@ -10,9 +10,7 @@ import { CheckIcon } from '@/shared/ui/icons/check';
 import { Link } from '@/shared/config/i18n';
 import styles from './success-page.module.scss';
 
-interface Props {}
-
-export const SuccessPage: FC<Props> = () => {
+export const SuccessPage: FC = () => {
   const t = useTranslations('success');
   const locale = useLocale();
   const searchParams = useSearchParams();
@@ -37,7 +35,7 @@ export const SuccessPage: FC<Props> = () => {
 
       setBookingInfo({
         date: format(date, 'EEEE, d MMMM yyyy', { locale: dateFnsLocale }),
-        time: format(date, 'H:mm', { locale: dateFnsLocale }),
+        time: format(date, 'h:mm a', { locale: enUS }),
       });
     }
   }, [searchParams, dateFnsLocale]);
