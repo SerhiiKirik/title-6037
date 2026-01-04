@@ -2,6 +2,7 @@
 
 import type { FC } from 'react';
 import cn from 'clsx';
+import { useTranslations } from 'next-intl';
 import type { DateInfo } from '@/shared/types';
 import { Slider } from '@/shared/ui';
 import styles from './date-slider.module.scss';
@@ -12,6 +13,8 @@ interface Props {
 }
 
 export const DateSlider: FC<Props> = ({ dates, onDateSelect }) => {
+  const t = useTranslations('booking');
+
   // Group dates by month
   const datesByMonth = dates.reduce(
     (acc, dateInfo) => {
@@ -49,7 +52,7 @@ export const DateSlider: FC<Props> = ({ dates, onDateSelect }) => {
                     {dateInfo.dayOfMonth}
                   </span>
                   {dateInfo.isToday && (
-                    <span className={styles.todayBadge}>Today</span>
+                    <span className={styles.todayBadge}>{t('today')}</span>
                   )}
                 </button>
               ))}
