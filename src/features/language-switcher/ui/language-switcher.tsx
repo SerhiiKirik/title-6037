@@ -2,7 +2,10 @@
 
 import { type FC, type ChangeEvent, useTransition } from 'react';
 import { useLocale } from 'next-intl';
-import { usePathname as useNextPathname } from 'next/navigation';
+import {
+  usePathname as useNextPathname,
+  useSearchParams,
+} from 'next/navigation';
 import cn from 'clsx';
 import {
   useRouter,
@@ -22,6 +25,7 @@ export const LanguageSwitcher: FC<Props> = ({ className }) => {
   const [isPending, startTransition] = useTransition();
   // Use Next.js pathname to get the FULL pathname with locale
   const fullPathname = useNextPathname();
+  const searchParams = useSearchParams();
 
   const handleLocaleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const newLocale = event.target.value as Locale;
@@ -35,8 +39,12 @@ export const LanguageSwitcher: FC<Props> = ({ className }) => {
         '',
       );
 
+      // Build URL with search params
+      const search = searchParams?.toString();
+      const url = `${pathnameWithoutLocale || '/'}${search ? `?${search}` : ''}`;
+
       // Navigate to the same path with new locale
-      router.replace(pathnameWithoutLocale || '/', { locale: newLocale });
+      router.replace(url, { locale: newLocale });
     });
   };
 
