@@ -59,6 +59,13 @@ export const useBookingStore = create<BookingState>((set, get) => ({
       const timestamp = dateTimeToTimestamp(selectedDate, selectedTime);
       // eslint-disable-next-line no-console
       console.log({ timestamp });
+
+      set({
+        selectedDate: null,
+        selectedTime: null,
+        availableTimeSlots: [],
+      });
+
       return timestamp;
     }
 

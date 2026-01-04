@@ -5,3 +5,4 @@
  */
 
 export { LanguageSwitcher } from './ui/language-switcher';
+export { useLocaleSwitcher } from './hooks/use-locale-switcher';

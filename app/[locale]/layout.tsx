@@ -6,6 +6,8 @@ import { Header } from '@/shared/ui';
 import { SEO_DEFAULTS } from '@/entities/seo';
 import { locales, localeMetadata } from '@/shared/config/i18n';
 import '../globals.css';
+import { BlurEllipse } from '@/shared/ui/icons/blur-ellipse';
+import styles from './layout.module.scss';
 
 const kaiseiTokumin = Kaisei_Tokumin({
   subsets: ['latin'],
@@ -47,7 +49,11 @@ const LocaleLayout = async ({ children, params }: Props) => {
       <body className={`${poppins.variable} ${kaiseiTokumin.variable}`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Header title="6037 Venture Partnership" />
-          <main>{children}</main>
+          <main className={styles.main}>
+            <div className={styles.content}>{children}</div>
+
+            <BlurEllipse className={styles.blurEllipse} />
+          </main>
         </NextIntlClientProvider>
       </body>
     </html>

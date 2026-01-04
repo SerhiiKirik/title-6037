@@ -49,3 +49,12 @@
     color: $color-text-white;
   }
 }
+
+.languageSwitcherSkeleton {
+  width: 120px;
+  height: 38px;
+  border: 2px solid $color-border;
+  border-radius: 8px;
+  background-color: $color-background;
+  opacity: 0.5;
+}

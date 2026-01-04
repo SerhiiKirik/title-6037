@@ -21,7 +21,6 @@ export const TimeSlider: FC<Props> = ({
 }) => {
   const hasAvailableSlots = timeSlots.some((slot) => !slot.disabled);
 
-  console.log('TimeSlider render', { timeSlots, selectedTime, isDisabled });
   if (timeSlots.length === 0) {
     return null;
   }

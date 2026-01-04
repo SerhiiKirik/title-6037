@@ -1,15 +1,9 @@
 'use client';
 
-import { type FC, type ChangeEvent, useTransition } from 'react';
-import { useLocale } from 'next-intl';
-import { usePathname as useNextPathname } from 'next/navigation';
+import { type FC } from 'react';
 import cn from 'clsx';
-import {
-  useRouter,
-  locales,
-  localeMetadata,
-  type Locale,
-} from '@/shared/config/i18n';
+import { locales, localeMetadata } from '@/shared/config/i18n';
+import { useLocaleSwitcher } from '../hooks/use-locale-switcher';
 import styles from './language-switcher.module.scss';
 
 interface Props {
@@ -17,28 +11,7 @@ interface Props {
 }
 
 export const LanguageSwitcher: FC<Props> = ({ className }) => {
-  const router = useRouter();
-  const currentLocale = useLocale();
-  const [isPending, startTransition] = useTransition();
-  // Use Next.js pathname to get the FULL pathname with locale
-  const fullPathname = useNextPathname();
-
-  const handleLocaleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = event.target.value as Locale;
-
-    if (newLocale === currentLocale || !fullPathname) return;
-
-    startTransition(() => {
-      // Get pathname without the current locale prefix
-      const pathnameWithoutLocale = fullPathname.replace(
-        new RegExp(`^/${currentLocale}`),
-        '',
-      );
-
-      // Navigate to the same path with new locale
-      router.replace(pathnameWithoutLocale || '/', { locale: newLocale });
-    });
-  };
+  const { currentLocale, isPending, handleLocaleChange } = useLocaleSwitcher();
 
   return (
     <div className={cn(styles.switcher, className)}>
