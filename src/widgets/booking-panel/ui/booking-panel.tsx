@@ -72,9 +72,7 @@ export const BookingPanel: FC = () => {
     const timestamp = confirmBooking();
 
     if (timestamp) {
-      // Get current locale from pathname
-      const currentLocale = window.location.pathname.split('/')[1];
-      router.push(`/${currentLocale}/success?timestamp=${timestamp}`);
+      router.push(`/${locale}/success?timestamp=${timestamp}`);
     }
   };
 
