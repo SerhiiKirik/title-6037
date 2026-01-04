@@ -1,6 +1,9 @@
 @import '@/shared/styles';
 
 .monthGroup {
+  position: relative;
+
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
@@ -8,6 +11,10 @@
 }
 
 .monthLabel {
+  position: absolute;
+  left: 0;
+  top: -4px;
+
   font-size: 14px;
   color: $color-text-secondary;
 }

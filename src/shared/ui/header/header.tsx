@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, Suspense } from 'react';
 import { LanguageSwitcher } from '@/features/language-switcher';
 import styles from './header.module.scss';
 
@@ -18,7 +18,9 @@ export const Header: FC<Props> = ({ logo, title = 'Booking App' }) => (
         <h1 className={styles.title}>{title}</h1>
       </div>
 
-      <LanguageSwitcher />
+      <Suspense fallback={<div className={styles.languageSwitcherSkeleton} />}>
+        <LanguageSwitcher />
+      </Suspense>
     </div>
   </header>
 );
