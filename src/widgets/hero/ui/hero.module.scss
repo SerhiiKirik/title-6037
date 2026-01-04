@@ -1,31 +1,83 @@
 @import '@/shared/styles';
 
 .container {
+  position: relative;
+
   width: 100%;
   height: 100%;
-  padding: $spacing-lg;
+  padding: 20px;
 }
 
 .content {
+  position: relative;
+  z-index: 1;
+
   max-width: 400px;
   margin: 0 auto;
 }
 
 .title {
-  margin-bottom: $spacing-sm;
-  font-family: var(--font-kaisei);
-  font-size: 32px;
-  font-weight: 700;
-  color: $color-text;
+  font-size: 27px;
+  font-weight: 500;
+  color: $color-text-white;
 }
 
 .subtitle {
-  margin-bottom: $spacing-xs;
+  margin-bottom: $spacing-lg;
   font-size: 16px;
-  color: $color-text;
+  color: $color-text-white;
+
+  opacity: 0.8;
 }
 
 .timing {
-  font-size: 16px;
-  color: $color-text;
+  display: flex;
+  gap: $spacing-sm;
+  align-items: center;
+  justify-content: center;
+
+  width: max-content;
+
+  padding: 4px 12px;
+
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 80px;
+
+  font-size: 13px;
+  color: $color-text-white;
+
+  backdrop-filter: blur(12px);
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.imageWrapper {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translateY(25%);
+
+  width: 300px;
+  height: 300px;
+
+  overflow: hidden;
+}
+
+.personImage {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 0;
+
+  width: 180px;
+  height: auto;
+}
+
+.ellipseIcon {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(15%, 12%);
 }

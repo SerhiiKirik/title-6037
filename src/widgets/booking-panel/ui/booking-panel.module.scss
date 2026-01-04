@@ -1,6 +1,8 @@
 @import '@/shared/styles';
 
 .panel {
+  position: relative;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -8,7 +10,7 @@
   flex: 1;
   gap: 32px;
 
-  padding: $spacing-md;
+  padding: 20px;
   background-color: $color-background;
 
   border-radius: 24px 24px 0 0;

@@ -76,7 +76,7 @@ export const BookingPanel: FC = () => {
       <div className={styles.content}>
         <div className={styles.header}>
           <Image
-            src="/person-mobile.webp"
+            src="/person_desktop_3x.webp"
             alt="Smiling woman with curly hair wearing a teal sweater and a brown coat against an orange background."
             width={120}
             height={120}
