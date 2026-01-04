@@ -8,6 +8,40 @@
   width: 100%;
 }
 
+.smoothFadeRight,
+.smoothFadeLeft {
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 2;
+    width: 100px;
+    pointer-events: none;
+  }
+}
+
+.smoothFadeRight {
+  &::after {
+    right: 24px;
+    background: linear-gradient(
+      270deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+}
+
+.smoothFadeLeft {
+  &::before {
+    left: 24px;
+    background: linear-gradient(90deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  }
+}
+
 .navButton {
   @include smoothTransition(transform, color, opacity);
   @include flexCenter;
