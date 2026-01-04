@@ -1,6 +1,7 @@
 'use client';
 
 import type { FC, ReactNode } from 'react';
+import cn from 'clsx';
 import { useSlider } from '@/shared/lib/hooks';
 import { ArrowIcon } from '@/shared/ui/icons/arrow';
 import styles from './slider.module.scss';
@@ -20,7 +21,12 @@ export const Slider: FC<Props> = ({ children, scrollAmount = 280 }) => {
   } = useSlider(scrollAmount);
 
   return (
-    <div className={styles.sliderWrapper}>
+    <div
+      className={cn(styles.sliderWrapper, {
+        [styles.smoothFadeRight]: canScrollRight,
+        [styles.smoothFadeLeft]: canScrollLeft,
+      })}
+    >
       <button
         type="button"
         onClick={scrollLeft}
