@@ -1,37 +1,48 @@
+'use client';
+
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { ClockIcon } from '@/shared/ui/icons/clock';
 import { EllipseIcon } from '@/shared/ui/icons/ellipse';
 import styles from './hero.module.scss';
 
-export const Hero = () => (
-  <>
-    <section className={styles.container}>
-      <div className={styles.content}>
-        <h1 className={styles.title}>Cool session</h1>
+export const Hero = () => {
+  const t = useTranslations('hero');
 
-        <p className={styles.subtitle}>Additional type</p>
+  return (
+    <>
+      <section className={styles.container}>
+        <div className={styles.content}>
+          <h1 className={styles.title}>{t('title')}</h1>
 
-        <p className={styles.timing}>
-          <ClockIcon className={styles.icon} width={16} height={16} />
+          <p className={styles.subtitle}>{t('subtitle')}</p>
 
-          <span>30 min</span>
-        </p>
-      </div>
+          <p className={styles.timing}>
+            <ClockIcon className={styles.icon} width={16} height={16} />
 
-      <div className={styles.imageWrapper}>
-        <EllipseIcon width={302} widths={302} className={styles.ellipseIcon} />
+            <span>{t('timing')}</span>
+          </p>
+        </div>
 
-        <Image
-          src="/person_mobile_3x.webp"
-          alt="Smiling woman with curly hair wearing a teal sweater and a brown coat against an orange background."
-          width={202}
-          height={290}
-          priority
-          className={styles.personImage}
-        />
-      </div>
-    </section>
+        <div className={styles.imageWrapper}>
+          <EllipseIcon
+            width={302}
+            widths={302}
+            className={styles.ellipseIcon}
+          />
 
-    <div className={styles.shadow} />
-  </>
-);
+          <Image
+            src="/person_mobile_3x.webp"
+            alt="Smiling woman with curly hair wearing a teal sweater and a brown coat against an orange background."
+            width={202}
+            height={290}
+            priority
+            className={styles.personImage}
+          />
+        </div>
+      </section>
+
+      <div className={styles.shadow} />
+    </>
+  );
+};
