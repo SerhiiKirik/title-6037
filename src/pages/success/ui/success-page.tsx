@@ -54,11 +54,6 @@ export const SuccessPage: FC<Props> = () => {
       setTimeout(resolve, 1500);
     });
 
-    // eslint-disable-next-line no-console
-    console.log('Sending confirmation email to:', email);
-    // eslint-disable-next-line no-console
-    console.log('Booking details:', bookingInfo);
-
     setEmailSent(true);
     setIsSending(false);
   };
