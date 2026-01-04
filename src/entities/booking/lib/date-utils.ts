@@ -5,6 +5,7 @@ import {
   isToday as isTodayFns,
   startOfDay,
   isSameDay,
+  type Locale,
 } from 'date-fns';
 import type { DateInfo } from '@/shared/types';
 
@@ -27,12 +28,13 @@ export const generateDateRange = (): Date[] => {
 export const formatDatesForUI = (
   dates: Date[],
   selectedDate: Date | null,
+  locale: Locale,
 ): DateInfo[] =>
   dates.map((date) => ({
     date,
-    dayOfWeek: format(date, 'EEE'),
+    dayOfWeek: format(date, 'EEE', { locale }),
     dayOfMonth: date.getDate(),
-    month: format(date, 'MMM'),
+    month: format(date, 'MMM', { locale }),
     isToday: isTodayFns(date),
     isSelected: selectedDate ? isSameDay(date, selectedDate) : false,
   }));

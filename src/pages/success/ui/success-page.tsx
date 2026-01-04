@@ -2,8 +2,9 @@
 
 import { type FC, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { format, fromUnixTime } from 'date-fns';
+import { uk, enUS } from 'date-fns/locale';
 import { Button } from '@/shared/ui';
 import { CheckIcon } from '@/shared/ui/icons/check';
 import { Link } from '@/shared/config/i18n';
@@ -13,6 +14,7 @@ interface Props {}
 
 export const SuccessPage: FC<Props> = () => {
   const t = useTranslations('success');
+  const locale = useLocale();
   const searchParams = useSearchParams();
   const [bookingInfo, setBookingInfo] = useState<{
     date: string;
@@ -21,6 +23,9 @@ export const SuccessPage: FC<Props> = () => {
   const [email, setEmail] = useState('');
   const [emailSent, setEmailSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
+
+  // Get date-fns locale based on current locale
+  const dateFnsLocale = locale === 'uk' ? uk : enUS;
 
   useEffect(() => {
     if (!searchParams) return;
@@ -31,11 +36,11 @@ export const SuccessPage: FC<Props> = () => {
       const date = fromUnixTime(parseInt(timestamp, 10));
 
       setBookingInfo({
-        date: format(date, 'EEEE, MMMM d, yyyy'),
-        time: format(date, 'h:mm a'),
+        date: format(date, 'EEEE, d MMMM yyyy', { locale: dateFnsLocale }),
+        time: format(date, 'H:mm', { locale: dateFnsLocale }),
       });
     }
-  }, [searchParams]);
+  }, [searchParams, dateFnsLocale]);
 
   const handleSendEmail = async (e: React.FormEvent) => {
     e.preventDefault();

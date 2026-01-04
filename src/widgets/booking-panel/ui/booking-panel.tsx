@@ -2,8 +2,9 @@
 
 import { type FC, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { format, setHours, setMinutes, startOfDay } from 'date-fns';
+import { uk, enUS } from 'date-fns/locale';
 import { DateSelector, TimeSelector } from '@/features/select-date-time';
 import { Button } from '@/shared/ui';
 import { useBookingStore } from '@/entities/booking/model';
@@ -13,6 +14,7 @@ import styles from './booking-panel.module.scss';
 
 export const BookingPanel: FC = () => {
   const t = useTranslations('booking');
+  const locale = useLocale();
   const router = useRouter();
 
   // Zustand store
@@ -26,11 +28,14 @@ export const BookingPanel: FC = () => {
   const selectTime = useBookingStore((state) => state.selectTime);
   const confirmBooking = useBookingStore((state) => state.confirmBooking);
 
+  // Get date-fns locale based on current locale
+  const dateFnsLocale = locale === 'uk' ? uk : enUS;
+
   // Generate dates (memoized to avoid recalculation)
   const dateRange = useMemo(() => generateDateRange(), []);
   const formattedDates = useMemo(
-    () => formatDatesForUI(dateRange, selectedDate),
-    [dateRange, selectedDate],
+    () => formatDatesForUI(dateRange, selectedDate, dateFnsLocale),
+    [dateRange, selectedDate, dateFnsLocale],
   );
 
   // Format selected date and time
@@ -47,10 +52,12 @@ export const BookingPanel: FC = () => {
     );
 
     return {
-      date: format(selectedDate, 'EEEE, MMMM d, yyyy'),
-      time: format(dateTime, 'h:mm a'),
+      date: format(selectedDate, 'EEEE, d MMMM yyyy', {
+        locale: dateFnsLocale,
+      }),
+      time: format(dateTime, 'H:mm', { locale: dateFnsLocale }),
     };
-  }, [selectedDate, selectedTime]);
+  }, [selectedDate, selectedTime, dateFnsLocale]);
 
   // Handlers
   const handleDateSelect = (date: Date) => {
