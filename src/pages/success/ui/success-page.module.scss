@@ -6,8 +6,11 @@
   min-height: 100vh;
   width: 100%;
 
+  padding: 20px;
+
   @include onDesktop {
     min-height: calc(100vh - 70px);
+    padding: 0;
   }
 }
 
@@ -68,6 +71,10 @@
 
   @include onTablet {
     font-size: 40px;
+
+    :global(html[lang='uk']) & {
+      font-size: 28px;
+    }
   }
 }
 
